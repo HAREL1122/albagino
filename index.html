@@ -61,77 +61,53 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ── HERO ─────────────────────────────────────────────── */
 #hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:flex-end;padding:0 5vw 10vh;overflow:hidden}
 
-/* Cinematic animated background */
-.hero-bg{position:absolute;inset:0;background:#0D0B09;overflow:hidden}
-.hero-bg-grad{
+/* Cinematic video background */
+.hero-bg{position:absolute;inset:0;background:#0A0806;overflow:hidden}
+
+/* Vimeo fullscreen iframe */
+.hero-video-wrap{
+  position:absolute;inset:0;overflow:hidden;
+}
+.hero-video-iframe{
+  position:absolute;
+  top:50%;left:50%;
+  width:100vw;
+  height:56.25vw;   /* 16:9 */
+  min-height:100vh;
+  min-width:177.78vh; /* 16:9 */
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  border:0;
+}
+/* CSS fallback (shown while video loads) */
+.hero-bg-fallback{
   position:absolute;inset:0;
   background:
     radial-gradient(ellipse 120% 80% at 60% 100%, rgba(184,134,11,.18) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 60% at 20% 20%, rgba(80,55,20,.25) 0%, transparent 50%),
-    linear-gradient(160deg,#1a1408 0%,#0D0B09 40%,#0a0806 100%);
-  animation:bgShift 12s ease-in-out infinite;
+    linear-gradient(160deg,#1a1408 0%,#0D0B09 60%,#0a0806 100%);
 }
-@keyframes bgShift{
-  0%,100%{opacity:1}
-  50%{opacity:.85}
+/* Dark overlay on top of video for readability */
+.hero-video-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top, rgba(10,8,6,1) 0%, rgba(10,8,6,.55) 35%, rgba(10,8,6,.25) 65%, rgba(10,8,6,.5) 100%),
+    linear-gradient(to right, rgba(10,8,6,.0) 0%, rgba(10,8,6,.3) 100%);
+  pointer-events:none;
 }
-/* Light ray 1 */
-.hero-ray{
-  position:absolute;top:-20%;left:25%;
-  width:3px;height:140%;
-  background:linear-gradient(to bottom,transparent 0%,rgba(212,165,32,.06) 30%,rgba(212,165,32,.12) 50%,rgba(212,165,32,.06) 70%,transparent 100%);
-  transform:rotate(-25deg);filter:blur(8px);
-  animation:rayDrift 14s ease-in-out infinite;
-}
-.hero-ray2{
-  position:absolute;top:-20%;left:55%;
-  width:2px;height:160%;
-  background:linear-gradient(to bottom,transparent 0%,rgba(212,165,32,.04) 40%,rgba(212,165,32,.08) 55%,rgba(212,165,32,.04) 70%,transparent 100%);
-  transform:rotate(-18deg);filter:blur(12px);
-  animation:rayDrift 18s 3s ease-in-out infinite reverse;
-}
-@keyframes rayDrift{
-  0%,100%{transform:rotate(-25deg) translateX(0);opacity:.6}
-  50%{transform:rotate(-25deg) translateX(-80px);opacity:1}
-}
-/* Ember glow at bottom */
+/* Ember glow */
 .hero-ember{
   position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);
   width:900px;height:500px;
-  background:radial-gradient(ellipse at center,rgba(184,134,11,.14) 0%,rgba(120,80,5,.06) 40%,transparent 65%);
-  animation:emberPulse 5s ease-in-out infinite;
-}
-@keyframes emberPulse{
-  0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}
-  50%{opacity:1;transform:translateX(-50%) scale(1.08)}
-}
-/* Wood-grain texture overlay */
-.hero-texture{
-  position:absolute;inset:0;
-  background-image:repeating-linear-gradient(
-    92deg,
-    transparent 0px,transparent 3px,
-    rgba(184,134,11,.012) 3px,rgba(184,134,11,.012) 4px
-  ),repeating-linear-gradient(
-    180deg,
-    transparent 0px,transparent 80px,
-    rgba(255,255,255,.008) 80px,rgba(255,255,255,.008) 81px
-  );
-}
-/* Hero image overlay (very subtle) */
-.hero-img-layer{
-  position:absolute;inset:0;
-  background:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg') center/cover no-repeat;
-  opacity:.07;mix-blend-mode:luminosity;
-}
-/* Bottom vignette */
-.hero-vignette{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(13,11,9,1) 0%,rgba(13,11,9,.4) 30%,transparent 60%);
+  background:radial-gradient(ellipse at center,rgba(184,134,11,.1) 0%,transparent 60%);
+  animation:emberPulse 6s ease-in-out infinite;
   pointer-events:none;
 }
+@keyframes emberPulse{
+  0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}
+  50%{opacity:1;transform:translateX(-50%) scale(1.1)}
+}
 /* Particles */
-.hero-particles{position:absolute;inset:0;pointer-events:none}
+.hero-particles{position:absolute;inset:0;pointer-events:none;z-index:2}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(212,165,32,.14);border:1px solid rgba(212,165,32,.3);
@@ -418,13 +394,17 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
 <!-- ═══ HERO ════════════════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="hero-bg-grad"></div>
-    <div class="hero-ray"></div>
-    <div class="hero-ray2"></div>
+    <div class="hero-bg-fallback"></div>
+    <div class="hero-video-wrap">
+      <iframe
+        class="hero-video-iframe"
+        src="https://player.vimeo.com/video/68793491?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&quality=1080p"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="hero-video-overlay"></div>
     <div class="hero-ember"></div>
-    <div class="hero-texture"></div>
-    <div class="hero-img-layer"></div>
-    <div class="hero-vignette"></div>
     <div class="hero-particles" id="particles"></div>
   </div>
   <div class="hero-content">
