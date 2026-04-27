@@ -667,11 +667,11 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
 <!-- ═══ STATS ════════════════════════════════════════════════ -->
 <div id="stats">
   <div class="stat-item reveal">
-    <div class="stat-num" data-target="200">0<span>+</span></div>
+    <div class="stat-num" data-target="200" data-suffix="+">0</div>
     <div class="stat-label">מוצרים בקטלוג</div>
   </div>
   <div class="stat-item reveal d1">
-    <div class="stat-num">15+</div>
+    <div class="stat-num" data-target="15" data-suffix="+">0</div>
     <div class="stat-label">מותגים עולמיים</div>
   </div>
   <div class="stat-item reveal d2">
@@ -679,7 +679,7 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
     <div class="stat-label">זמן אספקה</div>
   </div>
   <div class="stat-item reveal d3">
-    <div class="stat-num">25+</div>
+    <div class="stat-num" data-target="25" data-suffix="+">0</div>
     <div class="stat-label">שנות ניסיון</div>
   </div>
 </div>
@@ -1116,11 +1116,11 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg"
-             alt="קבוצת אלבגינו"
-             style="height:42px;filter:brightness(0) invert(1)"
-             onerror="this.style.display='none'"/>
-        <span style="font-size:16px;font-weight:800;margin-right:4px">קבוצת אלבגינו</span>
+        <span style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#D4A520,#B8860B);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#0B0A09;flex-shrink:0">א</span>
+        <span>
+          <span style="display:block;font-size:15px;font-weight:800;color:var(--text)">קבוצת אלבגינו</span>
+          <span style="display:block;font-size:10px;color:var(--dim);margin-top:2px;letter-spacing:.1em">ALBAGINO GROUP</span>
+        </span>
       </div>
       <p class="footer-desc">
         פתרונות מעוצבים לעולם העץ. מייבאים ממיטב היצרנים ברחבי העולם — מקוריאה ועד איטליה.
@@ -1255,6 +1255,29 @@ if(ham&&mm&&mc){
   mc.addEventListener('click',()=>mm.classList.remove('open'));
   mm.querySelectorAll('.m-link,.m-cta').forEach(el=>el.addEventListener('click',()=>mm.classList.remove('open')));
 }
+
+// ── Counter animation for stats ───────────────────────────────
+(function(){
+  const cObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      const target=parseInt(el.dataset.target,10);
+      const suffix=el.dataset.suffix||'';
+      const dur=1500;
+      const t0=performance.now();
+      function tick(now){
+        const p=Math.min((now-t0)/dur,1);
+        const ease=1-Math.pow(1-p,3);
+        el.textContent=Math.round(ease*target)+suffix;
+        if(p<1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      cObs.unobserve(el);
+    });
+  },{threshold:.6});
+  document.querySelectorAll('[data-target]').forEach(el=>cObs.observe(el));
+})();
 
 // ── Smooth scroll ─────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
