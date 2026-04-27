@@ -73,11 +73,69 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .nav-logo img{height:42px;width:auto;object-fit:contain;transition:filter .3s}
 /* Logo is always natural - nav bg provides contrast */
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-links a{font-size:14px;font-weight:500;color:rgba(237,232,223,.65);letter-spacing:.02em;transition:color .2s;position:relative}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(237,232,223,.65);letter-spacing:.02em;transition:color .2s;position:relative;white-space:nowrap}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:1px;background:var(--accent2);transition:width .3s}
 .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{width:100%}
+
+/* ── MEGA MENU ─────────────────────────────────────────── */
+.nav-mega-parent{position:relative}
+.nav-mega-trigger{
+  display:flex;align-items:center;gap:5px;
+  font-size:14px;font-weight:500;color:rgba(237,232,223,.65);
+  letter-spacing:.02em;cursor:pointer;transition:color .2s;
+  padding:4px 0;
+}
+.nav-mega-trigger:hover{color:var(--text)}
+.nav-mega-trigger svg{width:12px;height:12px;transition:transform .25s;opacity:.5}
+.nav-mega-parent:hover .nav-mega-trigger svg{transform:rotate(180deg)}
+.mega-menu{
+  position:absolute;top:calc(100% + 16px);
+  right:-40px;
+  width:640px;
+  background:rgba(11,9,7,.97);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  padding:28px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+  opacity:0;pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .22s,transform .22s;
+  z-index:200;
+  box-shadow:0 24px 60px rgba(0,0,0,.6);
+}
+.nav-mega-parent:hover .mega-menu{opacity:1;pointer-events:all;transform:translateY(0)}
+.mega-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px;border-radius:10px;
+  cursor:pointer;transition:background .18s;
+  text-decoration:none;
+}
+.mega-item:hover{background:rgba(255,255,255,.06)}
+.mega-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:rgba(212,165,32,.1);border:1px solid rgba(212,165,32,.18);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:16px;
+}
+.mega-text{}
+.mega-label{font-size:13px;font-weight:700;color:var(--text);line-height:1.2}
+.mega-sub{font-size:11px;color:var(--dim);margin-top:2px;line-height:1.4}
+.mega-divider{grid-column:1/-1;height:1px;background:rgba(255,255,255,.06);margin:8px 0}
+.mega-bottom{
+  grid-column:1/-1;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(212,165,32,.08),rgba(184,134,11,.04));
+  border:1px solid rgba(212,165,32,.15);
+  cursor:pointer;transition:background .2s;
+  text-decoration:none;
+}
+.mega-bottom:hover{background:linear-gradient(135deg,rgba(212,165,32,.14),rgba(184,134,11,.08))}
+.mega-bottom-text{font-size:13px;font-weight:700;color:var(--accent2)}
+.mega-bottom-arrow{font-size:18px;color:var(--accent2)}
 .nav-cta{display:flex;align-items:center;gap:10px}
 .btn-ghost{padding:9px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-size:13px;font-weight:600;color:rgba(237,232,223,.7);transition:all .2s;letter-spacing:.02em}
 .btn-ghost:hover{border-color:rgba(255,255,255,.4);color:var(--text);background:rgba(255,255,255,.05)}
@@ -463,8 +521,8 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
 /* ── LAZY VIDEO POSTER ───────────────────────────────────── */
 .hero-video-poster{
   position:absolute;inset:0;
-  background:url('https://i.vimeocdn.com/video/441428088-8539ac02340173295f9513a3aa36345d9290e4e353c3ea4c94f9b7b0dc4b67e9-d_640') center/cover no-repeat;
-  transition:opacity .8s;
+  background:url('https://i.vimeocdn.com/video/1026422860-c2b58e44b722ad4d6d25fee88f00c8db3911bb6976348b2ce1d81be1859663f5-d_1280') center/cover no-repeat;
+  transition:opacity 1s;
   z-index:1;
 }
 .hero-video-poster.hidden{opacity:0;pointer-events:none}
@@ -488,8 +546,56 @@ footer{background:#080807;border-top:1px solid rgba(255,255,255,.06);padding:80p
     </span>
   </a>
   <ul class="nav-links">
+    <li class="nav-mega-parent">
+      <span class="nav-mega-trigger">
+        מוצרים
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+      </span>
+      <div class="mega-menu">
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🔩</div>
+          <div class="mega-text"><div class="mega-label">GRASS — מנגנונים</div><div class="mega-sub">Nova Pro, Dynapro, DWD XP</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🎨</div>
+          <div class="mega-text"><div class="mega-label">צבע וגימור</div><div class="mega-sub">BORMA, לקות, שמנים</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">⭐</div>
+          <div class="mega-text"><div class="mega-label">קולקציית אלבגינו</div><div class="mega-sub">מוצרים ייחודיים ובלעדיים</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🪢</div>
+          <div class="mega-text"><div class="mega-label">בדים וקנטים</div><div class="mega-sub">לריהוט, מיטות וספות</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🪵</div>
+          <div class="mega-text"><div class="mega-label">עץ ולוחות</div><div class="mega-sub">MDF, אגלומרט, לוחות גולמי</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🧴</div>
+          <div class="mega-text"><div class="mega-label">כימיה ונגרות</div><div class="mega-sub">דבקים, חומרי ניקוי, פרוטקשן</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🔸</div>
+          <div class="mega-text"><div class="mega-label">נייר שמיר</div><div class="mega-sub">Mirka, Festool, גרעיניות 40–400</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">🔧</div>
+          <div class="mega-text"><div class="mega-label">פרזול וחומרה</div><div class="mega-sub">INOXA, ידיות, מסילות, מחברים</div></div>
+        </a>
+        <a href="https://albagino.co.il/shop/" class="mega-item">
+          <div class="mega-icon">📦</div>
+          <div class="mega-text"><div class="mega-label">לוחות ואריזות</div><div class="mega-sub">חומרי אריזה ומיגון</div></div>
+        </a>
+        <div class="mega-divider"></div>
+        <a href="https://albagino.co.il/shop/" class="mega-bottom">
+          <span class="mega-bottom-text">לכל הקטלוג — אתר ההזמנות</span>
+          <span class="mega-bottom-arrow">←</span>
+        </a>
+      </div>
+    </li>
     <li><a href="#solutions">פתרונות</a></li>
-    <li><a href="#products">מוצרים</a></li>
     <li><a href="#about">אודות</a></li>
     <li><a href="#brands">מותגים</a></li>
     <li><a href="#cta">צור קשר</a></li>
@@ -1096,7 +1202,7 @@ function loadHeroVideo(){
   if(!wrap) return;
   const iframe=document.createElement('iframe');
   iframe.className='hero-video-iframe';
-  iframe.src='https://player.vimeo.com/video/68793491?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1';
+  iframe.src='https://player.vimeo.com/video/496022232?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1';
   iframe.allow='autoplay; fullscreen';
   iframe.setAttribute('allowfullscreen','');
   iframe.onload=()=>{
