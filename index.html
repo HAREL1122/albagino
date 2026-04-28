@@ -236,6 +236,19 @@ section{padding:110px 5vw}
 .fb-num{font-size:42px;font-weight:900;color:var(--text);letter-spacing:-.03em;line-height:1;margin-bottom:4px}
 .fb-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
 
+/* ── DEPARTMENTS (מחלקות) ──────────────────────────────── */
+#depts{background:var(--bg);padding:140px 5vw}
+.dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dept-card{position:relative;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FFFFFF;transition:all .4s;aspect-ratio:3/4;display:flex;align-items:flex-end;padding:24px;text-decoration:none;cursor:pointer}
+.dept-card:hover{border-color:var(--accent2);box-shadow:0 12px 32px rgba(184,134,11,.12);transform:translateY(-4px)}
+.dept-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.05;transition:opacity .4s,transform .8s}
+.dept-card:hover .dept-bg{opacity:.15;transform:scale(1.05)}
+.dept-content{position:relative;z-index:2}
+.dept-title{font-size:24px;font-weight:800;color:var(--text);letter-spacing:-.01em;transition:color .3s}
+.dept-card:hover .dept-title{color:var(--accent2)}
+.dept-arrow{font-size:16px;color:var(--accent-light);margin-top:12px;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(10px);transition:all .3s}
+.dept-card:hover .dept-arrow{opacity:1;transform:translateY(0)}
+
 /* ── PRODUCTS GRID ────────────────────────────────────── */
 #products{background:var(--bg2)}
 .prod-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px}
@@ -338,6 +351,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 /* ── RESPONSIVE ───────────────────────────────────────── */
 @media(max-width:1024px){
   .sol-grid{grid-template-columns:1fr 1fr}
+  .dept-grid{grid-template-columns:repeat(3,1fr)}
   .prod-grid{grid-template-columns:1fr 1fr}
   .feat-block{grid-template-columns:1fr;gap:44px}
   .feat-block.rev .feat-vis{order:0}
@@ -350,12 +364,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   .nav-links,.nav-cta .btn-ghost{display:none}
   .nav-hamburger{display:flex}
   .sol-grid{grid-template-columns:1fr}
+  .dept-grid{grid-template-columns:repeat(2,1fr)}
   .prod-grid{grid-template-columns:1fr}
   .why-intro{grid-template-columns:1fr;gap:24px;margin-bottom:48px}
   .why-item{grid-template-columns:50px 1fr;gap:16px}
   .why-arrow{display:none}
   .footer-grid{grid-template-columns:1fr}
   .testimonials-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .dept-grid{grid-template-columns:1fr}
 }
 
 /* ── REDUCED MOTION ─────────────────────────────────────── */
@@ -467,13 +485,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
           <div class="mega-text"><div class="mega-label">לוחות ואריזות</div><div class="mega-sub">חומרי אריזה ומיגון</div></div>
         </a>
         <div class="mega-divider"></div>
-        <a href="https://albagino.co.il/shop/" class="mega-bottom">
+        <a href="catalog-demo.html" class="mega-bottom">
           <span class="mega-bottom-text">לכל הקטלוג — אתר ההזמנות</span>
           <span class="mega-bottom-arrow">←</span>
         </a>
       </div>
     </li>
     <li><a href="#solutions">פתרונות</a></li>
+    <li><a href="#depts">מחלקות</a></li>
     <li><a href="#about">אודות</a></li>
     <li><a href="#brands">מותגים</a></li>
     <li><a href="#cta">צור קשר</a></li>
@@ -698,6 +717,74 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   </div>
 </section>
 
+<!-- ═══ DEPARTMENTS ════════════════════════════════════════════ -->
+<section id="depts">
+  <div class="prod-head">
+    <div>
+      <div class="eyebrow reveal">קנה לפי מחלקה</div>
+      <h2 class="section-h2 reveal d1">לובי <em>מחלקות</em></h2>
+    </div>
+  </div>
+  <div class="dept-grid reveal">
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://albagino.co.il/wp-content/uploads/2024/12/Grass.jpg')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת גראס</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/anakona.jpg')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת צבע</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-למסילות-pxqqvtpap40v7bosti9q2nljfzs73mlb3kr58wu1g4.jpg')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת אלבגיניום</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://images.unsplash.com/photo-1596207802821-657c91a0ccb0?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת בדים</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://images.unsplash.com/photo-1610427847775-650e41f92e59?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת עץ</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת לטוש</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-לפרזול-לארונות-בגדים-pxqqvzcbu49pnfsp37ajzabq64cbi9q8nuqyxtxbps.png')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת פרזול</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+    <a href="catalog-demo.html" class="dept-card">
+      <div class="dept-bg" style="background-image:url('https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="dept-content">
+        <div class="dept-title">מחלקת לוחות</div>
+        <div class="dept-arrow">כניסה למחלקה <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- ═══ PRODUCTS ══════════════════════════════════════════════ -->
 <section id="products">
   <div class="prod-head">
@@ -705,7 +792,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       <div class="eyebrow reveal">קטלוג מוצרים</div>
       <h2 class="section-h2 reveal d1">מוצרים <em>נבחרים</em></h2>
     </div>
-    <a href="https://albagino.co.il/shop/" class="btn-link reveal d2" style="margin-bottom:6px">
+    <a href="catalog-demo.html" class="btn-link reveal d2" style="margin-bottom:6px">
       לכל הקטלוג
       <svg style="width:14px;height:14px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>

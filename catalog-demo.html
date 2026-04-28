@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>קטלוג אלבגינו – תצוגת תכלית</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<!-- Core dashboard styles for the catalog -->
+<link rel="stylesheet" href="dashboard.css">
+
+<style>
+/* Marketing Topbar Override */
+.demo-topbar {
+    height: 80px;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(0,0,0,.04);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.demo-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+.demo-logo img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+}
+.demo-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.btn-ghost {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text2);
+    border: 1px solid var(--border);
+    transition: all .2s;
+    text-decoration: none;
+}
+.btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--ink);
+    background: var(--gold-bg);
+}
+.btn-primary {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    transition: all .25s;
+    border: none;
+    text-decoration: none;
+}
+.btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+}
+
+.demo-header {
+    background: var(--ink);
+    color: white;
+    padding: 60px 48px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.demo-header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+}
+.demo-header h1 span {
+    color: var(--gold);
+}
+.demo-header p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Modal Overlay for Login Requirement */
+#login-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+#login-modal.show {
+    display: flex;
+    opacity: 1;
+}
+.modal-content {
+    background: var(--white);
+    padding: 48px;
+    border-radius: 24px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#login-modal.show .modal-content {
+    transform: translateY(0);
+}
+.modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--gold-bg);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+.modal-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+.modal-h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 12px;
+}
+.modal-p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+.modal-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--ink);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.modal-btn:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px var(--gold-bg);
+}
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.modal-close:hover {
+    color: var(--ink);
+}
+
+@media(max-width: 768px) {
+    .demo-topbar { padding: 0 20px; }
+    .demo-logo img { height: 32px; }
+    .btn-ghost { display: none; }
+    .demo-header { padding: 40px 20px; }
+    .demo-header h1 { font-size: 32px; }
+    .cat-layout { padding: 0 20px; }
+}
+</style>
+</head>
+<body style="background: var(--sand);">
+
+<!-- Topbar -->
+<header class="demo-topbar">
+    <a href="index.html" class="demo-logo">
+        <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="קבוצת אלבגינו"/>
+    </a>
+    <div class="demo-actions">
+        <a href="index.html" class="btn-ghost">חזרה לאתר הראשי</a>
+        <a href="login.html" class="btn-primary">התחברות לקוחות</a>
+    </div>
+</header>
+
+<!-- Header -->
+<div class="demo-header">
+    <h1>קטלוג <span>אלבגינו</span> המלא</h1>
+    <p>ברוכים הבאים לתצוגת הקטלוג. צפו במגוון המוצרים שלנו, מנגנונים מתקדמים, לוחות, צבעים ופרזול. כדי לצפות במחירים אישיים ולבצע הזמנות, אנא התחברו למערכת.</p>
+</div>
+
+<!-- Main Catalog Layout (from dashboard.html) -->
+<div style="max-width: 1400px; margin: 0 auto 80px; padding: 0 48px;" class="cat-layout">
+    
+    <aside class="cat-sidebar">
+        <div class="cs-block">
+            <div class="cs-title">סינון לפי קטגוריה</div>
+            <label class="cs-check"><input type="checkbox" checked/><span class="ck-box"></span>פרזול למטבח <span>(142)</span></label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>מסילות ומגירות <span>(85)</span></label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>חומרי גימור ועץ <span>(34)</span></label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>ברגים ומחברים <span>(210)</span></label>
+        </div>
+        <div class="cs-block">
+            <div class="cs-title">מותגים מובילים</div>
+            <label class="cs-check"><input type="checkbox" checked/><span class="ck-box"></span>GRASS Austria</label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>BORMA WACHS</label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>INOXA Italy</label>
+            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>SENOSAN</label>
+        </div>
+    </aside>
+    
+    <div class="cat-main">
+        <div class="cat-bar">
+            <div class="cb-res">מציג <strong>6</strong> מתוך <strong>142</strong> פריטים תואמים</div>
+            <div class="cb-sort">
+                מיין לפי: 
+                <select>
+                <option>פופולריות</option>
+                <option>הוסף לאחרונה</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="pg">
+            <!-- Product 1 -->
+            <div class="pc" onclick="requireLogin(event)">
+                <div class="pc-im"><img src="https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg" alt=""/></div>
+                <div class="pc-bd">
+                <div class="pc-ct">GRASS AUSTRIA</div>
+                <div class="pc-nm">Dynapro Soft Close לשליפה מלאה</div>
+                <div class="pc-sku">מק״ט: G-DP-600</div>
+                <div class="pc-stock"><span class="dot g"></span>במלאי (מעל 100 יח')</div>
+                
+                <div class="pc-ft">
+                    <span class="pc-pr">₪---<small>.--</small></span>
+                    <div class="pc-act">
+                    <button class="pc-add" onclick="requireLogin(event)">לרכישה <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="pc" onclick="requireLogin(event)">
+                <div class="pc-im"><img src="https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg" alt=""/></div>
+                <div class="pc-bd">
+                <div class="pc-ct">GRASS AUSTRIA</div>
+                <div class="pc-nm">Nova Pro Scala דפנות כפולות</div>
+                <div class="pc-sku">מק״ט: G-NPS-240</div>
+                <div class="pc-stock"><span class="dot g"></span>במלאי (45 יח')</div>
+                
+                <div class="pc-ft">
+                    <span class="pc-pr">₪---<small>.--</small></span>
+                    <div class="pc-act">
+                    <button class="pc-add" onclick="requireLogin(event)">לרכישה <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="pc" onclick="requireLogin(event)">
+                <div class="pc-im"><img src="https://albagino.co.il/wp-content/uploads/2023/02/roma.jpg" alt=""/></div>
+                <div class="pc-bd">
+                <div class="pc-ct">BORMA WACHS</div>
+                <div class="pc-nm">Roma שמן עץ טבעי לגימור מט</div>
+                <div class="pc-sku">מק״ט: BW-RMA-01</div>
+                <div class="pc-stock"><span class="dot o"></span>מלאי נמוך (8 פחים)</div>
+                
+                <div class="pc-ft">
+                    <span class="pc-pr">₪---<small>.--</small></span>
+                    <div class="pc-act">
+                    <button class="pc-add" onclick="requireLogin(event)">לרכישה <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="pc" onclick="requireLogin(event)">
+                <div class="pc-im"><img src="https://albagino.co.il/wp-content/uploads/2024/12/INOXA.png" alt=""/></div>
+                <div class="pc-bd">
+                <div class="pc-ct">INOXA ITALY</div>
+                <div class="pc-nm">מתקן ייבוש כלים נירוסטה אל חלד</div>
+                <div class="pc-sku">מק״ט: INX-DRY-80</div>
+                <div class="pc-stock"><span class="dot g"></span>במלאי זמין</div>
+                
+                <div class="pc-ft">
+                    <span class="pc-pr">₪---<small>.--</small></span>
+                    <div class="pc-act">
+                    <button class="pc-add" onclick="requireLogin(event)">לרכישה <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Require Login Modal -->
+<div id="login-modal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <h2 class="modal-h2">לקוח עסקי?</h2>
+        <p class="modal-p">כדי לצפות במחירים האישיים שלך, לנהל מלאי ולהוסיף מוצרים לסל הקניות, עליך להתחבר למערכת ה-B2B של אלבגינו.</p>
+        <a href="login.html" class="modal-btn">מעבר למסך ההתחברות</a>
+        <button class="modal-close" onclick="closeModal()">המשך בשיטוט בקטלוג</button>
+    </div>
+</div>
+
+<script>
+function requireLogin(e) {
+    e.stopPropagation();
+    const modal = document.getElementById('login-modal');
+    modal.style.display = 'flex';
+    // Trigger reflow
+    void modal.offsetWidth;
+    modal.classList.add('show');
+}
+
+function closeModal() {
+    const modal = document.getElementById('login-modal');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+// Close modal on outside click
+document.getElementById('login-modal').addEventListener('click', function(e) {
+    if(e.target === this) {
+        closeModal();
+    }
+});
+</script>
+
+</body>
+</html>
