@@ -46,138 +46,132 @@ button{cursor:pointer;font-family:inherit}
 .cat-link:hover, .cat-link.active{color:var(--accent2)}
 .cat-sep{color:var(--border);font-size:12px;user-select:none}
 
-/* ── LOBBY HERO ────────────────────────────────────────── */
-.lobby-hero{
-  margin-top:128px; /* nav + strip height */
-  height: 40vh;
-  min-height: 300px;
-  background: var(--ink);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.lh-bg{
-  position: absolute;
-  inset: 0;
-  background-image: url('https://albagino.co.il/wp-content/uploads/2024/12/Grass.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.4;
-  mix-blend-mode: multiply;
-  transition: transform 6s linear;
-}
-.lobby-hero:hover .lh-bg {
-  transform: scale(1.05);
-}
-.lh-content{
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 5vw;
-}
-.lh-eyebrow{
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent-light);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.lh-title{
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 900;
-  color: #FFFFFF;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-  line-height: 1.1;
-}
-.lh-desc{
-  font-size: 16px;
-  color: rgba(255,255,255,0.8);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* ── SUB-CATEGORIES GRID (DOMICILE STYLE) ──────────────── */
-.sub-cat-sec{
-  padding: 80px 5vw;
+/* ── MASONRY LOBBY GRID ──────────────────────────────────── */
+.lobby-main {
+  padding: 140px 5vw 80px; /* space for fixed navs */
   background: var(--bg);
 }
-.sc-grid{
+.lobby-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
 }
-.sc-card{
+
+/* Aspect ratio trick to ensure perfectly square grid cells */
+.grid-cell {
   position: relative;
-  aspect-ratio: 1; /* Square cards */
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* Text Box: Spans 2 columns, 1 row -> aspect-ratio 2/1 */
+.text-box {
+  grid-column: span 2;
+  aspect-ratio: 2 / 1;
+  background: var(--sand);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tb-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.tb-desc {
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+/* Video Box: Spans 2 cols, 2 rows -> aspect-ratio 1/1 */
+.video-box {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+.vb-iframe {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+  pointer-events: none; /* simple background video */
+}
+
+/* Square Cards: Span 1 col, 1 row -> aspect-ratio 1/1 */
+.sc-card {
+  grid-column: span 1;
+  aspect-ratio: 1;
+  position: relative;
   background: #fff;
   overflow: hidden;
   display: block;
   text-decoration: none;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
 }
-.sc-img{
+.sc-img {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sc-card:hover .sc-img{
-  transform: scale(1.06);
+.sc-card:hover .sc-img {
+  transform: scale(1.05);
 }
-.sc-overlay{
+.sc-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(11,10,9,0.7) 0%, rgba(11,10,9,0) 40%);
-  opacity: 0.8;
+  background: linear-gradient(to top, rgba(11,10,9,0.5) 0%, rgba(11,10,9,0) 40%);
+  opacity: 0;
   transition: opacity 0.3s;
 }
-.sc-card:hover .sc-overlay{
+.sc-card:hover .sc-overlay {
   opacity: 1;
 }
-.sc-title-wrap{
+.sc-title-wrap {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 32px;
+  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-.sc-title{
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(8px);
-  padding: 12px 24px;
+.sc-title {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
   color: var(--ink);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   transition: all 0.3s;
-  /* Matching domicile's bottom-right aligned block look */
 }
-.sc-card:hover .sc-title{
+.sc-card:hover .sc-title {
   background: var(--ink);
   color: #fff;
 }
 
 /* ── RESPONSIVE ────────────────────────────────────────── */
 @media(max-width:1024px){
-  .sc-grid{grid-template-columns: repeat(2, 1fr);}
+  .lobby-grid{grid-template-columns: repeat(2, 1fr);}
+  .text-box { grid-column: span 2; aspect-ratio: auto; padding: 40px; }
+  .video-box { grid-column: span 2; aspect-ratio: 1.5; }
 }
 @media(max-width:768px){
   .nav-links, .nav-cta .btn-ghost{display:none;}
-  .sc-grid{grid-template-columns: 1fr;}
+  .lobby-grid{grid-template-columns: 1fr; gap: 16px;}
+  .text-box { grid-column: span 1; aspect-ratio: auto; padding: 32px; }
+  .video-box { grid-column: span 1; grid-row: auto; aspect-ratio: 1.5; }
   .cat-strip{justify-content:flex-start;}
-  .lh-title{font-size: 32px;}
 }
 </style>
 </head>
@@ -218,31 +212,41 @@ button{cursor:pointer;font-family:inherit}
   </div>
 </div>
 
-<!-- ═══ LOBBY HERO ════════════════════════════════════════ -->
-<header class="lobby-hero">
-  <div class="lh-bg"></div>
-  <div class="lh-content">
-    <span class="lh-eyebrow">מחלקת פרזול מתקדם</span>
-    <h1 class="lh-title">GRASS Austria</h1>
-    <p class="lh-desc">פתרונות תנועה ומנגנונים חכמים לארונות ומטבחים. איכות אוסטרית חסרת פשרות לנגרים, אדריכלים ומעצבי פנים.</p>
-  </div>
-</header>
+<!-- ═══ MASONRY LOBBY GRID ═══════════════════════════════ -->
+<main class="lobby-main">
+  <div class="lobby-grid">
+    
+    <!-- Text Box (Top Left, Spans 2 cols) -->
+    <div class="grid-cell text-box">
+      <h1 class="tb-title">מוצרי איכות מבית GRASS Austria</h1>
+      <p class="tb-desc">
+        מנגנונים מתקדמים ופתרונות תנועה מובילים לארונות ומטבחים. 
+        הטכנולוגיה המתקדמת ומגוון העיצובים הרחב מאפשר להתאים את 
+        הפתרונות של GRASS לכל קו עיצובי. במשך עשרות שנות פעילות, 
+        החברה מייצרת סטנדרט חדש של איכות, נוחות, ופונקציונליות חסרת פשרות.
+      </p>
+    </div>
 
-<!-- ═══ SUB-CATEGORIES GRID ═══════════════════════════════ -->
-<section class="sub-cat-sec">
-  <div class="sc-grid">
-    <!-- Card 1 -->
-    <a href="catalog-demo.html" class="sc-card">
+    <!-- Video Box (Top Right, Spans 2 cols x 2 rows) -->
+    <div class="grid-cell video-box">
+      <!-- Using YouTube embed for the video -->
+      <iframe class="vb-iframe" 
+        src="https://www.youtube.com/embed/Dtc-t0O6Mes?autoplay=1&mute=1&controls=0&loop=1&playlist=Dtc-t0O6Mes&modestbranding=1" 
+        allow="autoplay; fullscreen">
+      </iframe>
+    </div>
+
+    <!-- Small Cards under Text Box -->
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
-        <div></div> <!-- spacer -->
+        <div></div>
         <div class="sc-title">מגירות דופן כפולה</div>
       </div>
     </a>
-    
-    <!-- Card 2 -->
-    <a href="catalog-demo.html" class="sc-card">
+
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
@@ -251,47 +255,45 @@ button{cursor:pointer;font-family:inherit}
       </div>
     </a>
 
-    <!-- Card 3 -->
-    <a href="catalog-demo.html" class="sc-card">
+    <!-- More Square Cards (Next Row) -->
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
         <div></div>
-        <div class="sc-title">מערכות צירים מובחרות</div>
+        <div class="sc-title">מערכות צירים</div>
       </div>
     </a>
 
-    <!-- Card 4 -->
-    <a href="catalog-demo.html" class="sc-card">
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
         <div></div>
-        <div class="sc-title">מערכות קלפה חכמות</div>
+        <div class="sc-title">מערכות קלפה</div>
       </div>
     </a>
 
-    <!-- Card 5 -->
-    <a href="catalog-demo.html" class="sc-card">
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2024/12/INOXA.png')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
         <div></div>
-        <div class="sc-title">חלוקת פנים וארגון</div>
+        <div class="sc-title">חלוקת פנים</div>
       </div>
     </a>
 
-    <!-- Card 6 -->
-    <a href="catalog-demo.html" class="sc-card">
+    <a href="catalog-demo.html" class="grid-cell sc-card">
       <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1596207802821-657c91a0ccb0?auto=format&fit=crop&q=80&w=800')"></div>
       <div class="sc-overlay"></div>
       <div class="sc-title-wrap">
         <div></div>
-        <div class="sc-title">אביזרי הרכבה וציוד נלווה</div>
+        <div class="sc-title">אביזרי הרכבה</div>
       </div>
     </a>
+
   </div>
-</section>
+</main>
 
 <!-- Footer simplified -->
 <footer style="background:#fff; border-top:1px solid var(--border); padding:40px 5vw; text-align:center;">
