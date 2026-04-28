@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>התחברות — קבוצת אלבגינו</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#A67B27;--gold-light:#CFA043;--ink:#111111;--ink2:#2A2A2A;--white:#FFFFFF}
+html,body{height:100%}
+body{
+  font-family:'Heebo',sans-serif;
+  background:url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=2000&q=80') center/cover no-repeat;
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+body::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(17,17,17,.9) 0%,rgba(17,17,17,.6) 100%);
+  z-index:0;
+}
+
+.login-card{
+  position:relative;z-index:1;
+  width:100%;max-width:440px;
+  background:rgba(20,20,20,.7);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:24px;
+  padding:48px 40px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.login-logo{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.login-logo-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff;margin-left:12px;box-shadow:0 8px 20px rgba(166,123,39,.3)}
+.login-logo-text{font-weight:900;font-size:22px;letter-spacing:-.02em;color:#fff}
+
+.login-heading{text-align:center;margin-bottom:36px}
+.login-heading h1{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.login-heading p{font-size:14px;color:rgba(255,255,255,.5)}
+
+.field{margin-bottom:20px}
+.field label{display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;margin-bottom:8px;text-transform:uppercase}
+.field input{
+  width:100%;padding:14px 16px;
+  border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  font-family:'Heebo',sans-serif;font-size:15px;color:#fff;
+  background:rgba(255,255,255,.04);outline:none;
+  transition:all .25s;
+}
+.field input:focus{
+  border-color:var(--gold);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(166,123,39,.15);
+}
+.field input::placeholder{color:rgba(255,255,255,.3)}
+
+.meta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.meta-row label{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7);cursor:pointer}
+.meta-row input[type=checkbox]{accent-color:var(--gold);width:16px;height:16px}
+.forgot{font-size:13px;color:var(--gold);font-weight:700;transition:color .2s}
+.forgot:hover{color:var(--gold-light)}
+
+.btn-login{
+  width:100%;padding:15px;border:none;border-radius:10px;
+  background:var(--gold);color:#fff;
+  font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;
+  cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);
+  letter-spacing:.02em;
+}
+.btn-login:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(166,123,39,.3)}
+.btn-login:active{transform:translateY(0)}
+.btn-login:disabled{opacity:.6;cursor:default;transform:none}
+
+.divider{display:flex;align-items:center;gap:12px;margin:32px 0 24px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+.divider span{font-size:11px;color:rgba(255,255,255,.4);white-space:nowrap;letter-spacing:.05em}
+
+.back-link{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:14px;font-weight:600;color:rgba(255,255,255,.6);
+  transition:color .2s;
+}
+.back-link:hover{color:#fff}
+.back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
+.login-footer{text-align:center;margin-top:24px;font-size:12px;color:rgba(255,255,255,.3)}
+
+.login-spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .5s linear infinite;margin:0 auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+.login-error{display:none;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#ef4444;font-weight:600;text-align:center}
+.login-error.show{display:block;animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+</style>
+</head>
+<body>
+<div class="login-card">
+  <div class="login-logo">
+    <div class="login-logo-icon">א</div><div class="login-logo-text">קבוצת אלבגינו</div>
+  </div>
+  <div class="login-heading">
+    <h1>כניסה למרכז העסקים</h1>
+    <p>התחברו לניהול ההזמנות, החשבוניות והרכש שלכם</p>
+  </div>
+  <div class="login-error" id="err">שם משתמש או סיסמה שגויים</div>
+  <div class="login-tabs" style="display:flex;gap:10px;margin-bottom:24px">
+    <button class="ltab active" onclick="setLoginType('pwd')" style="flex:1;padding:10px;border:none;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-family:inherit;cursor:pointer">כניסה עם סיסמה</button>
+    <button class="ltab" onclick="setLoginType('otp')" style="flex:1;padding:10px;border:none;border-radius:10px;background:transparent;color:rgba(255,255,255,.6);font-weight:700;font-family:inherit;cursor:pointer">כניסה עם OTP</button>
+  </div>
+  <form onsubmit="return doLogin(event)" id="loginForm">
+    <!-- Password Fields -->
+    <div id="pwd-fields">
+      <div class="field"><label>שם משתמש / ח.פ.</label><input type="text" id="u" placeholder="הזינו שם משתמש"/></div>
+      <div class="field"><label>סיסמה</label><input type="password" id="p" placeholder="הזינו סיסמה"/></div>
+      <div class="meta-row"><label><input type="checkbox" checked/> זכור אותי במחשב זה</label><a href="#" class="forgot">שכחת סיסמה?</a></div>
+    </div>
+    <!-- OTP Fields -->
+    <div id="otp-fields" style="display:none">
+      <div class="field"><label>מספר טלפון נייד</label><input type="tel" id="u_phone" placeholder="05X-XXXXXXX"/></div>
+      <div class="field" id="otp-code-field" style="display:none;margin-bottom:12px"><label>קוד OTP (נשלח ב-SMS)</label><input type="text" id="otp_code" placeholder="הזינו קוד 6 ספרות" style="text-align:center;letter-spacing:4px;font-size:18px"/></div>
+      <button type="button" class="btn-login" id="btn-send-otp" onclick="sendOtp()" style="background:rgba(255,255,255,.1);margin-bottom:20px;border:1px solid rgba(255,255,255,.2)">שליחת קוד לנייד</button>
+    </div>
+    <button type="submit" class="btn-login" id="btn"><span id="btxt">התחברות מאובטחת</span><div class="login-spinner" id="bsp"></div></button>
+  </form>
+  <div class="divider"><span>B2B PORTAL</span></div>
+  <a href="index.html" class="back-link"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>חזרה לאתר הראשי</a>
+  <div class="login-footer">© 2026 קבוצת אלבגינו — כל הזכויות שמורות</div>
+</div>
+<script>
+let loginType = 'pwd';
+function setLoginType(type) {
+  loginType = type;
+  document.querySelectorAll('.ltab').forEach(t => { t.style.background='transparent'; t.style.color='rgba(255,255,255,.6)'; });
+  event.target.style.background='rgba(255,255,255,.1)';
+  event.target.style.color='#fff';
+  if(type === 'pwd') {
+    document.getElementById('pwd-fields').style.display='block';
+    document.getElementById('otp-fields').style.display='none';
+    document.getElementById('btn').style.display='block';
+  } else {
+    document.getElementById('pwd-fields').style.display='none';
+    document.getElementById('otp-fields').style.display='block';
+    document.getElementById('btn').style.display='none'; // Hidden until OTP sent
+  }
+}
+function sendOtp() {
+  var phone = document.getElementById('u_phone').value;
+  if(!phone) return alert('נא להזין מספר טלפון');
+  document.getElementById('btn-send-otp').innerText = 'קוד נשלח שוב בהצלחה';
+  document.getElementById('otp-code-field').style.display = 'block';
+  document.getElementById('btn').style.display='block';
+}
+function doLogin(e){
+  e.preventDefault();
+  var btn=document.getElementById('btn'),txt=document.getElementById('btxt'),sp=document.getElementById('bsp');
+  txt.style.display='none';sp.style.display='block';btn.disabled=true;
+  setTimeout(function(){window.location.href='dashboard.html'},900);
+  return false;
+}
+</script>
+</body>
+</html>

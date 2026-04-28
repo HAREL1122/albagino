@@ -217,24 +217,24 @@ section{padding:110px 5vw}
 .sol-card:hover .sol-arrow{opacity:1;transform:translateY(0)}
 
 /* ── FEATURES ───────────────────────────────────────── */
-#features{background:var(--bg)}
-.feat-block{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:80px 0;border-bottom:1px solid var(--border)}
-.feat-block:first-child{border-top:1px solid var(--border)}
+#features{background:var(--bg);padding:140px 5vw}
+.feat-block{display:grid;grid-template-columns:1fr 1.2fr;gap:100px;align-items:center;padding:100px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.feat-block:first-child{border-top:1px solid rgba(0,0,0,.04)}
 .feat-block.rev .feat-vis{order:-1}
-.feat-tag{display:inline-block;padding:5px 13px;border-radius:100px;background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:22px}
-.feat-h3{font-size:clamp(26px,3vw,42px);font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:18px;color:var(--text)}
-.feat-p{font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:28px;max-width:420px}
-.feat-list{list-style:none;margin-bottom:36px}
-.feat-list li{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:500;color:var(--text2);padding:9px 0;border-bottom:1px solid var(--border)}
-.feat-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent2);flex-shrink:0}
-.btn-link{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;transition:gap .2s}
-.btn-link:hover{gap:14px}
-.feat-vis{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.1)}
-.feat-img{width:100%;aspect-ratio:4/3;object-fit:cover;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
-.feat-vis:hover .feat-img{transform:scale(1.04)}
-.feat-badge{position:absolute;bottom:20px;right:20px;background:#FFFFFF;border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:140px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.fb-num{font-size:30px;font-weight:900;color:var(--accent2);letter-spacing:-.02em;line-height:1}
-.fb-label{font-size:11px;color:var(--dim);margin-top:3px;font-weight:500}
+.feat-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:28px}
+.feat-tag::before{content:'';width:20px;height:1px;background:var(--accent)}
+.feat-h3{font-size:clamp(32px,3.5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:24px;color:var(--text)}
+.feat-p{font-size:16px;color:var(--dim);line-height:1.8;margin-bottom:40px;max-width:440px}
+.feat-list{list-style:none;margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feat-list li{font-size:14px;font-weight:600;color:var(--text2);display:flex;align-items:flex-start;gap:12px;line-height:1.4}
+.feat-list li svg{width:18px;height:18px;stroke:var(--accent2);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
+.btn-link{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:800;color:var(--text);letter-spacing:.08em;text-transform:uppercase;transition:all .3s;padding-bottom:4px;border-bottom:2px solid transparent}
+.btn-link:hover{color:var(--accent2);border-bottom-color:var(--accent2);gap:14px}
+.feat-vis{position:relative;width:100%}
+.feat-img{width:100%;aspect-ratio:4/4.5;object-fit:cover;background-size:cover;background-position:center;border-radius:0}
+.feat-badge{position:absolute;bottom:-30px;right:-30px;background:var(--bg2);padding:30px 40px;border-left:4px solid var(--accent2);box-shadow:0 20px 40px rgba(0,0,0,.05)}
+.fb-num{font-size:42px;font-weight:900;color:var(--text);letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.fb-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
 
 /* ── PRODUCTS GRID ────────────────────────────────────── */
 #products{background:var(--bg2)}
@@ -266,38 +266,32 @@ section{padding:110px 5vw}
 .brand-text:hover{color:rgba(0,0,0,.45)}
 
 /* ── WHY US ───────────────────────────────────────────── */
-#why{background:var(--bg2);padding:110px 5vw}
-#why .eyebrow{color:var(--accent)}
-#why .eyebrow::before{background:var(--accent)}
-#why .section-h2{color:var(--text)}
-.why-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px}
-.why-intro-left p{font-size:17px;color:var(--dim);line-height:1.75;max-width:380px}
-.why-list{display:flex;flex-direction:column}
-.why-item{display:grid;grid-template-columns:80px 1fr auto;align-items:start;gap:32px;padding:36px 0;border-top:1px solid var(--border);cursor:default;transition:border-color .3s}
-.why-item:hover{border-color:var(--accent2)}
-.why-item:last-child{border-bottom:1px solid var(--border)}
-.why-num{font-size:13px;font-weight:700;letter-spacing:.12em;color:rgba(184,134,11,.35);font-variant-numeric:tabular-nums;padding-top:4px;transition:color .3s}
-.why-item:hover .why-num{color:var(--accent2)}
-.why-h4{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:8px;line-height:1.1}
-.why-p{font-size:14px;line-height:1.7;color:var(--dim);max-width:500px}
-.why-arrow{width:40px;height:40px;border-radius:10px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .25s}
-.why-arrow svg{width:16px;height:16px;stroke:var(--dim);transition:stroke .25s}
-.why-item:hover .why-arrow{border-color:var(--accent2);background:rgba(184,134,11,.06)}
-.why-item:hover .why-arrow svg{stroke:var(--accent2)}
+#why{background:var(--text);padding:140px 5vw;color:#fff}
+#why .eyebrow{color:var(--accent-light)}
+#why .eyebrow::before{background:var(--accent-light)}
+#why .section-h2{color:#fff}
+.why-intro{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;margin-bottom:100px}
+.why-intro-left p{font-size:18px;color:rgba(255,255,255,.6);line-height:1.7;max-width:420px}
+.why-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:60px 80px}
+.why-item{position:relative;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);transition:border-color .4s}
+.why-item:hover{border-color:var(--accent-light)}
+.why-num{position:absolute;top:-16px;right:0;font-size:20px;font-weight:800;color:var(--accent-light);font-variant-numeric:tabular-nums}
+.why-h4{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:16px;line-height:1.2}
+.why-p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.6);max-width:400px}
 
 /* ── ABOUT ────────────────────────────────────────────── */
-#about{background:var(--bg);padding:110px 5vw}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-img-wrap{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.1)}
-.about-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--bg2)}
-.about-img-badge{position:absolute;bottom:20px;right:20px;background:#FFFFFF;border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.about-num{font-size:32px;font-weight:900;color:var(--accent2);line-height:1}
-.about-num-label{font-size:11px;color:var(--dim);margin-top:3px}
-.about-h2{font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;color:var(--text)}
-.about-p{font-size:16px;color:var(--dim);line-height:1.75;margin-bottom:14px}
-.about-details{display:flex;flex-direction:column;gap:10px;margin-top:32px}
-.about-detail{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text2)}
-.about-detail-icon{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+#about{background:var(--bg);padding:140px 5vw}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center}
+.about-img-wrap{position:relative;width:100%}
+.about-img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--bg2)}
+.about-img-badge{position:absolute;top:50%;right:-60px;transform:translateY(-50%);background:var(--text);color:#fff;padding:40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.15)}
+.about-num{font-size:52px;font-weight:900;color:var(--accent-light);line-height:1;letter-spacing:-.02em;margin-bottom:6px}
+.about-num-label{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.about-h2{font-size:clamp(40px,4.5vw,64px);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:32px;color:var(--text)}
+.about-p{font-size:17px;color:var(--text2);line-height:1.8;margin-bottom:20px;max-width:480px}
+.about-details{display:flex;flex-direction:column;gap:16px;margin-top:48px;border-top:1px solid rgba(0,0,0,.08);padding-top:40px}
+.about-detail{display:flex;align-items:center;gap:16px;font-size:15px;font-weight:600;color:var(--text)}
+.about-detail-icon{font-size:18px;color:var(--accent)}
 
 /* ── CTA BANNER — single dark section for contrast ─────── */
 #cta{position:relative;overflow:hidden;background:#1C1A17;padding:120px 5vw;text-align:center}
@@ -406,7 +400,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 /* ── LAZY VIDEO POSTER ───────────────────────────────────── */
 .hero-video-poster{
   position:absolute;inset:0;
-  background:url('https://i.vimeocdn.com/video/1026422860-c2b58e44b722ad4d6d25fee88f00c8db3911bb6976348b2ce1d81be1859663f5-d_1280') center/cover no-repeat;
+  background:url('https://img.youtube.com/vi/Dtc-t0O6Mes/maxresdefault.jpg') center/cover no-repeat;
   transition:opacity 1s;z-index:1;
 }
 .hero-video-poster.hidden{opacity:0;pointer-events:none}
@@ -485,8 +479,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
     <li><a href="#cta">צור קשר</a></li>
   </ul>
   <div class="nav-cta">
-    <button class="btn-ghost" onclick="location.href='#cta'">קטלוגים</button>
-    <button class="btn-primary" onclick="location.href='https://albagino.co.il/shop/'">לאתר ההזמנות</button>
+    <button class="btn-ghost" onclick="location.href='login.html'">אזור אישי</button>
+    <button class="btn-primary" onclick="location.href='dashboard.html'">לאתר ההזמנות</button>
   </div>
   <button class="nav-hamburger" id="ham" aria-label="תפריט">
     <span></span><span></span><span></span>
@@ -501,7 +495,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   <a href="#about" class="m-link">אודות</a>
   <a href="#brands" class="m-link">מותגים</a>
   <a href="#cta" class="m-link">צור קשר</a>
-  <a href="https://albagino.co.il/shop/" class="m-cta">לאתר ההזמנות ←</a>
+  <a href="dashboard.html" class="m-cta">לאתר ההזמנות ←</a>
 </div>
 
 <!-- ═══ HERO ════════════════════════════════════════════════ -->
@@ -531,7 +525,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       לנגרים ויצרני ריהוט מקצועיים בישראל. מייבאים ממיטב היצרנים בעולם.
     </p>
     <div class="hero-actions">
-      <a href="https://albagino.co.il/shop/" class="btn-hero-cta">
+      <a href="dashboard.html" class="btn-hero-cta">
         לאתר ההזמנות
         <svg style="width:18px;height:18px;flex-shrink:0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -629,16 +623,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         מנגנוני פתיחה שקטה עם soft-close, לכל סגנון ריהוט.
       </p>
       <ul class="feat-list">
-        <li>NOVA PRO SCALA — מגירה מלאה עם side panel</li>
-        <li>DYNAPRO SOFT CLOSE — לארונות ומטבחים</li>
-        <li>DWD XP — מנגנון חיצוני, עומס עד 50 ק״ג</li>
-        <li>גשרים, מסילות ואביזרים נלווים</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> NOVA PRO SCALA — מגירה מלאה</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> DYNAPRO SOFT CLOSE</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> DWD XP — עומס עד 50 ק״ג</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> גשרים ומסילות</li>
       </ul>
       <a href="https://albagino.co.il/shop/" class="btn-link">
         לכל קו GRASS
-        <svg style="width:14px;height:14px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
       </a>
     </div>
     <div class="feat-vis">
@@ -660,23 +651,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         לכל סוג משטח ועץ.
       </p>
       <ul class="feat-list">
-        <li>שמני עץ טבעיים ותעשייתיים</li>
-        <li>לקות ופוליאורתן לסיום</li>
-        <li>סטיינים בעשרות גוונים</li>
-        <li>פריימרים ומוצרי הכנה לשטח</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> שמני עץ טבעיים</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> לקות ופוליאורתן</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> עשרות גווני סטיין</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> פריימרים מקצועיים</li>
       </ul>
       <a href="https://albagino.co.il/shop/" class="btn-link">
         למחלקת הגימור
-        <svg style="width:14px;height:14px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
       </a>
     </div>
     <div class="feat-vis">
       <div class="feat-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/anakona.jpg')"></div>
       <div class="feat-badge">
         <div class="fb-num">BORMA</div>
-        <div class="fb-label">יצוא איטלי מקורי</div>
+        <div class="fb-label">ייבוא איטלקי</div>
       </div>
     </div>
   </div>
@@ -691,16 +679,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         ורכיבי פרזול איכותיים לכל פרויקט ריהוט.
       </p>
       <ul class="feat-list">
-        <li>ניקלי מטבח בגדלים שונים</li>
-        <li>ידיות מודרניות ועתיקות</li>
-        <li>מסילות לשולחנות ומגירות</li>
-        <li>מחברים ופרזול לארונות בגדים</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> ניקלי מטבח ומייבשים</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> ידיות במגוון סגנונות</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> מסילות הרחבה לשולחנות</li>
+        <li><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> מחברים חכמים</li>
       </ul>
       <a href="https://albagino.co.il/shop/" class="btn-link">
         לקטלוג הפרזול
-        <svg style="width:14px;height:14px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
       </a>
     </div>
     <div class="feat-vis">
@@ -833,41 +818,29 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       <h2 class="section-h2 reveal d1">הסיבות שנגרים<br/><em>בוחרים בנו</em></h2>
     </div>
     <div class="why-intro-left reveal d2">
-      <p>25 שנה של ניסיון, ייבוא ישיר מהיצרנים הטובים בעולם, ושירות שמתחיל ומסתיים בלקוח. זה לא סיסמה — זו הדרך שבה אנחנו עובדים מ-1998.</p>
+      <p>25 שנה של ניסיון, ייבוא ישיר מהיצרנים הטובים בעולם, ושירות שמתחיל ומסתיים בלקוח. בסטנדרט בלתי מתפשר, זו הדרך שבה אנחנו עובדים מ-1998.</p>
     </div>
   </div>
-  <div class="why-list">
+  <div class="why-grid">
     <div class="why-item reveal">
       <span class="why-num">01</span>
-      <div class="why-body">
-        <h4 class="why-h4">מלאי זמין בכל עת</h4>
-        <p class="why-p">מחסן עמוס במאות פריטים — לא מחכים לייבוא. ההזמנה שלך יוצאת ביום הבא, ומגיעה עד פתח הסדנה.</p>
-      </div>
-      <div class="why-arrow"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      <h4 class="why-h4">מלאי זמין בכל עת</h4>
+      <p class="why-p">מחסן ענק וזמין במלאי לפריטים המובילים. ההזמנה שלך יוצאת באופן מיידי ללא עיכובים מיותרים, היישר לפתח הסדנה.</p>
     </div>
     <div class="why-item reveal d1">
       <span class="why-num">02</span>
-      <div class="why-body">
-        <h4 class="why-h4">מיובא ישירות מהמקור</h4>
-        <p class="why-p">מקוריאה ועד איטליה — GRASS, BORMA, INOXA, SENOSAN. אנחנו מייבאים ישירות מהמפעלים, ללא ספקי ביניים.</p>
-      </div>
-      <div class="why-arrow"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      <h4 class="why-h4">ייבוא ישיר מהמקור</h4>
+      <p class="why-p">בלי מתווכים ובלי פערי תיווך. GRASS, BORMA, INOXA — אנחנו היבואנים הרשמיים בישראל, ומבטיחים לך את התנאים הטובים ביותר.</p>
     </div>
     <div class="why-item reveal d2">
       <span class="why-num">03</span>
-      <div class="why-body">
-        <h4 class="why-h4">שירות אישי ומותאם</h4>
-        <p class="why-p">ראיית הלקוח במרכז העשייה — נציג אישי שמכיר את הסדנה, את הפרויקטים ואת הצרכים הספציפיים שלך.</p>
-      </div>
-      <div class="why-arrow"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      <h4 class="why-h4">ליווי אישי ללקוח</h4>
+      <p class="why-p">נציג צמוד המכיר את הצרכים הספציפיים שלך, מייעץ טכנית ודואג שכל פרויקט יצא מושלם, עם זמינות לכל שאלה.</p>
     </div>
     <div class="why-item reveal d3">
       <span class="why-num">04</span>
-      <div class="why-body">
-        <h4 class="why-h4">מוצרים מקוריים, אחריות מלאה</h4>
-        <p class="why-p">100% מוצרים מקוריים עם אחריות יצרן מלאה. לא נוגעים בתחליפים — רק המקורי, רק האיכות הטובה ביותר.</p>
-      </div>
-      <div class="why-arrow"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></div>
+      <h4 class="why-h4">מקורי בלבד</h4>
+      <p class="why-p">אפס פשרות באיכות. כלל המוצרים באלבגינו הם מקוריים ב-100%, עם אחריות יצרן מלאה לאורך שנים ארוכות.</p>
     </div>
   </div>
 </section>
@@ -886,29 +859,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       <div class="eyebrow">אודות קבוצת אלבגינו</div>
       <h2 class="about-h2">25 שנה של<br/>מצוינות בעץ</h2>
       <p class="about-p">
-        קבוצת אלבגינו הוקמה ב-1998 על ידי אלי אלבג, עם חזון ברור:
-        לספק לנגרים ויצרני ריהוט בישראל את המוצרים הטובים ביותר בעולם.
-      </p>
-      <p class="about-p">
-        ב-2002 הרחבנו לתחומים נוספים — ומאז אנחנו ממשיכים לגדול
-        עם קטלוג עשיר, שירות אישי ואספקה ללא תחרות.
+        קבוצת אלבגינו הוקמה ב-1998 על ידי אלי אלבג, עם חזון ברור: לספק לנגרים ויצרני ריהוט בישראל את המוצרים הטובים ביותר בעולם, ללא פשרות.
       </p>
       <div class="about-details">
         <div class="about-detail">
-          <span class="about-detail-icon"></span>
-          מרכז לוגיסטי: השקד 3, פארק תעשיה חבל מודיעין
+          <div class="about-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>מרכז לוגיסטי חבל מודיעין, השקד 3</div>
         </div>
         <div class="about-detail">
-          <span class="about-detail-icon"></span>
-          משרדים: הדרור 1, ירחיב
-        </div>
-        <div class="about-detail">
-          <span class="about-detail-icon"></span>
-          טלפון: <a href="tel:03-9773105" style="color:var(--accent2)">03-9773105</a>
-        </div>
-        <div class="about-detail">
-          <span class="about-detail-icon"></span>
-          דוא״ל: <a href="mailto:info@albagino.co.il" style="color:var(--accent2)">info@albagino.co.il</a>
+          <div class="about-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><a href="tel:03-9773105">03-9773105</a></div>
         </div>
       </div>
     </div>
@@ -1086,12 +1046,12 @@ function loadHeroVideo(){
   if(!wrap) return;
   const iframe=document.createElement('iframe');
   iframe.className='hero-video-iframe';
-  iframe.src='https://player.vimeo.com/video/496022232?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1';
+  iframe.src='https://www.youtube.com/embed/Dtc-t0O6Mes?autoplay=1&mute=1&controls=0&loop=1&playlist=Dtc-t0O6Mes&modestbranding=1&rel=0&playsinline=1';
   iframe.allow='autoplay; fullscreen';
   iframe.setAttribute('allowfullscreen','');
   iframe.onload=()=>{
     // Fade out poster once video is ready
-    setTimeout(()=>poster && poster.classList.add('hidden'), 800);
+    setTimeout(()=>poster && poster.classList.add('hidden'), 1500);
   };
   wrap.appendChild(iframe);
 }
