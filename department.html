@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>לובי מחלקה – GRASS Austria | אלבגינו</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<!-- Reusing index.css or embedding core styles here -->
+<style>
+:root{
+  --bg:#F8F8F6;--bg2:#F0EFEA;
+  --text:#0B0A09;--text2:#2A2825;--dim:#736F68;--muted:#A39F98;
+  --accent:#D4A520;--accent2:#B8860B;--accent-light:#E8C55A;
+  --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.15);
+  --sand:#EDEBE3;--gold:#D4A520;--gold-bg:rgba(212,165,32,.08);
+  --ink:#181614;
+}
+* {margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
+a{text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* ── NAV ────────────────────────────────────────────────── */
+#nav{position:fixed;top:0;left:0;width:100%;height:76px;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid rgba(0,0,0,.04);transition:all .3s cubic-bezier(.16,1,.3,1)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:900;font-size:22px;letter-spacing:-.02em}
+.nav-logo img{height:42px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;height:100%}
+.nav-links a{color:var(--text2);font-size:15px;font-weight:600;transition:color .2s;text-decoration:none;display:flex;align-items:center;height:100%}
+.nav-links a:hover{color:var(--accent2)}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.btn-ghost{padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;color:var(--text2);border:1px solid var(--border);transition:all .2s;background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--ink);background:var(--gold-bg)}
+.btn-primary{padding:10px 24px;border-radius:8px;background:var(--ink);font-size:14px;font-weight:700;color:#FFFFFF;transition:all .25s;border:none}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* ── CATEGORY STRIP ────────────────────────────────────── */
+.cat-strip-wrap{position:fixed;top:76px;left:0;width:100%;background:#FFFFFF;border-bottom:1px solid var(--border);z-index:98}
+.cat-strip{display:flex;align-items:center;justify-content:center;gap:32px;padding:14px 5vw;overflow-x:auto;white-space:nowrap;max-width:1400px;margin:0 auto}
+.cat-strip::-webkit-scrollbar{display:none}
+.cat-link{font-size:14px;font-weight:700;color:var(--text2);letter-spacing:.02em;transition:color .2s;position:relative}
+.cat-link:hover, .cat-link.active{color:var(--accent2)}
+.cat-sep{color:var(--border);font-size:12px;user-select:none}
+
+/* ── LOBBY HERO ────────────────────────────────────────── */
+.lobby-hero{
+  margin-top:128px; /* nav + strip height */
+  height: 40vh;
+  min-height: 300px;
+  background: var(--ink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.lh-bg{
+  position: absolute;
+  inset: 0;
+  background-image: url('https://albagino.co.il/wp-content/uploads/2024/12/Grass.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  transition: transform 6s linear;
+}
+.lobby-hero:hover .lh-bg {
+  transform: scale(1.05);
+}
+.lh-content{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 5vw;
+}
+.lh-eyebrow{
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.lh-title{
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.lh-desc{
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── SUB-CATEGORIES GRID (DOMICILE STYLE) ──────────────── */
+.sub-cat-sec{
+  padding: 80px 5vw;
+  background: var(--bg);
+}
+.sc-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.sc-card{
+  position: relative;
+  aspect-ratio: 1; /* Square cards */
+  background: #fff;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.03);
+}
+.sc-img{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sc-card:hover .sc-img{
+  transform: scale(1.06);
+}
+.sc-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,10,9,0.7) 0%, rgba(11,10,9,0) 40%);
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.sc-card:hover .sc-overlay{
+  opacity: 1;
+}
+.sc-title-wrap{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.sc-title{
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  padding: 12px 24px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+  transition: all 0.3s;
+  /* Matching domicile's bottom-right aligned block look */
+}
+.sc-card:hover .sc-title{
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media(max-width:1024px){
+  .sc-grid{grid-template-columns: repeat(2, 1fr);}
+}
+@media(max-width:768px){
+  .nav-links, .nav-cta .btn-ghost{display:none;}
+  .sc-grid{grid-template-columns: 1fr;}
+  .cat-strip{justify-content:flex-start;}
+  .lh-title{font-size: 32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="קבוצת אלבגינו"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">חזרה לאתר הראשי</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-ghost" onclick="location.href='login.html'">אזור אישי</button>
+    <button class="btn-primary" onclick="location.href='dashboard.html'">לאתר ההזמנות</button>
+  </div>
+</nav>
+
+<!-- ═══ CATEGORY STRIP ════════════════════════════════════ -->
+<div class="cat-strip-wrap">
+  <div class="cat-strip">
+    <a href="department.html" class="cat-link active">מחלקת גראס</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת צבע</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת אלבגיניום</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת בדים</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת עץ</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת לטוש</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת פרזול</a>
+    <span class="cat-sep">|</span>
+    <a href="department.html" class="cat-link">מחלקת לוחות</a>
+  </div>
+</div>
+
+<!-- ═══ LOBBY HERO ════════════════════════════════════════ -->
+<header class="lobby-hero">
+  <div class="lh-bg"></div>
+  <div class="lh-content">
+    <span class="lh-eyebrow">מחלקת פרזול מתקדם</span>
+    <h1 class="lh-title">GRASS Austria</h1>
+    <p class="lh-desc">פתרונות תנועה ומנגנונים חכמים לארונות ומטבחים. איכות אוסטרית חסרת פשרות לנגרים, אדריכלים ומעצבי פנים.</p>
+  </div>
+</header>
+
+<!-- ═══ SUB-CATEGORIES GRID ═══════════════════════════════ -->
+<section class="sub-cat-sec">
+  <div class="sc-grid">
+    <!-- Card 1 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div> <!-- spacer -->
+        <div class="sc-title">מגירות דופן כפולה</div>
+      </div>
+    </a>
+    
+    <!-- Card 2 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div>
+        <div class="sc-title">מסילות וטריקה שקטה</div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div>
+        <div class="sc-title">מערכות צירים מובחרות</div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div>
+        <div class="sc-title">מערכות קלפה חכמות</div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2024/12/INOXA.png')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div>
+        <div class="sc-title">חלוקת פנים וארגון</div>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="catalog-demo.html" class="sc-card">
+      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1596207802821-657c91a0ccb0?auto=format&fit=crop&q=80&w=800')"></div>
+      <div class="sc-overlay"></div>
+      <div class="sc-title-wrap">
+        <div></div>
+        <div class="sc-title">אביזרי הרכבה וציוד נלווה</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Footer simplified -->
+<footer style="background:#fff; border-top:1px solid var(--border); padding:40px 5vw; text-align:center;">
+    <p style="color:var(--dim); font-size:14px;">© 2026 קבוצת אלבגינו שיווק וסחר בע״מ · כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>
