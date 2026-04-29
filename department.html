@@ -135,36 +135,30 @@ body {
   overflow: hidden;
 }
 
-/* Custom CSS Logo */
+/* Real Brand Logo Overlay */
 .brand-overlay {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 30px 40px;
-  backdrop-filter: blur(8px);
-  background: rgba(0,0,0,0.3);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
-.brand-mark {
-  font-size: 56px;
-  color: #D4A520;
-  font-family: 'Times New Roman', serif; /* Elegant serif for the mark */
-  line-height: 1;
-  margin-bottom: 12px;
-  font-weight: 400;
+.brand-logo-img {
+  width: 260px;
+  /* Trick to turn JPG with white background into a pure white transparent logo:
+     1. grayscale removes colors
+     2. invert turns white bg to black, black text to white
+     3. brightness boosts the white text
+     4. mix-blend-mode screen makes the black bg completely transparent! */
+  filter: grayscale(1) invert(1) brightness(20);
+  mix-blend-mode: screen;
+  opacity: 0.95;
+  transition: transform 0.4s ease;
 }
-.brand-text {
-  font-size: 13px;
-  color: #FFFFFF;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  font-weight: 400;
+.brand-overlay:hover .brand-logo-img {
+  transform: scale(1.05);
 }
 
 .pg-video-hero iframe {
@@ -234,9 +228,7 @@ body {
 @media (max-width: 1200px) {
   .sidebar { width: 220px; padding: 40px 3vw 40px 15px; }
   .main-title { font-size: 38px; }
-  .brand-overlay { padding: 20px 30px; }
-  .brand-mark { font-size: 40px; }
-  .brand-text { font-size: 11px; }
+  .brand-logo-img { width: 180px; }
 }
 @media (max-width: 992px) {
   .page-container { flex-direction: column; }
@@ -299,8 +291,7 @@ body {
       <!-- Video Hero -->
       <div class="pg-video-hero">
         <div class="brand-overlay">
-          <span class="brand-mark">A</span>
-          <span class="brand-text">ALBAGINO</span>
+          <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="Albagino Brand" class="brand-logo-img"/>
         </div>
         <iframe src="https://www.youtube.com/embed/Dtc-t0O6Mes?autoplay=1&mute=1&controls=0&loop=1&playlist=Dtc-t0O6Mes&modestbranding=1" allow="autoplay; fullscreen"></iframe>
       </div>
