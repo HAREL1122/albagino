@@ -3,181 +3,230 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>לובי מחלקה – GRASS Austria | אלבגינו</title>
+<title>לובי מחלקה – אלבגינו פרימיום</title>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
-<!-- Reusing index.css or embedding core styles here -->
 <style>
-:root{
-  --bg:#F8F8F6;--bg2:#F0EFEA;
-  --text:#0B0A09;--text2:#2A2825;--dim:#736F68;--muted:#A39F98;
-  --accent:#D4A520;--accent2:#B8860B;--accent-light:#E8C55A;
-  --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.15);
-  --sand:#EDEBE3;--gold:#D4A520;--gold-bg:rgba(212,165,32,.08);
-  --ink:#181614;
+:root {
+  --bg: #FFFFFF;
+  --bg-sand: #EBEAE3; /* Domicile-like warm grey/sand */
+  --text-main: #1A1A1A;
+  --text-muted: #555555;
+  --border: #E5E5E5;
+  --accent-gold: #B8860B;
+  --ink: #181614;
 }
-* {margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
-a{text-decoration:none}
-button{cursor:pointer;font-family:inherit}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-/* ── NAV ────────────────────────────────────────────────── */
-#nav{position:fixed;top:0;left:0;width:100%;height:76px;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid rgba(0,0,0,.04);transition:all .3s cubic-bezier(.16,1,.3,1)}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:900;font-size:22px;letter-spacing:-.02em}
-.nav-logo img{height:42px;width:auto;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:36px;list-style:none;height:100%}
-.nav-links a{color:var(--text2);font-size:15px;font-weight:600;transition:color .2s;text-decoration:none;display:flex;align-items:center;height:100%}
-.nav-links a:hover{color:var(--accent2)}
-.nav-cta{display:flex;gap:12px;align-items:center}
-.btn-ghost{padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;color:var(--text2);border:1px solid var(--border);transition:all .2s;background:transparent}
-.btn-ghost:hover{border-color:var(--accent);color:var(--ink);background:var(--gold-bg)}
-.btn-primary{padding:10px 24px;border-radius:8px;background:var(--ink);font-size:14px;font-weight:700;color:#FFFFFF;transition:all .25s;border:none}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; width: 100%; height: 76px;
+  background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px);
+  z-index: 100; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; border-bottom: 1px solid var(--border); transition: all 0.3s ease;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 22px; }
+.nav-logo img { height: 42px; width: auto; object-fit: contain; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; height: 100%; }
+.nav-links a { color: var(--text-muted); font-size: 15px; font-weight: 600; transition: color 0.2s; text-decoration: none; }
+.nav-links a:hover { color: var(--accent-gold); }
+.nav-cta { display: flex; gap: 12px; align-items: center; }
+.btn-ghost { padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text-main); border: 1px solid var(--border); transition: all 0.2s; background: transparent; cursor: pointer; }
+.btn-ghost:hover { border-color: var(--accent-gold); color: var(--ink); background: rgba(184, 134, 11, 0.05); }
+.btn-primary { padding: 10px 24px; border-radius: 8px; background: var(--ink); font-size: 14px; font-weight: 700; color: #FFFFFF; transition: all 0.25s; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--accent-gold); transform: translateY(-1px); }
 
-/* ── CATEGORY STRIP ────────────────────────────────────── */
-.cat-strip-wrap{position:fixed;top:76px;left:0;width:100%;background:#FFFFFF;border-bottom:1px solid var(--border);z-index:98}
-.cat-strip{display:flex;align-items:center;justify-content:center;gap:32px;padding:14px 5vw;overflow-x:auto;white-space:nowrap;max-width:1400px;margin:0 auto}
-.cat-strip::-webkit-scrollbar{display:none}
-.cat-link{font-size:14px;font-weight:700;color:var(--text2);letter-spacing:.02em;transition:color .2s;position:relative}
-.cat-link:hover, .cat-link.active{color:var(--accent2)}
-.cat-sep{color:var(--border);font-size:12px;user-select:none}
+/* ── LAYOUT ── */
+.page-container {
+  display: flex;
+  margin-top: 76px;
+  min-height: calc(100vh - 76px);
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* ── MASONRY LOBBY GRID ──────────────────────────────────── */
-.lobby-main {
-  padding: 140px 5vw 80px; /* space for fixed navs */
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  background: #FFF;
+  padding: 40px 30px;
+  position: sticky;
+  top: 76px;
+  height: calc(100vh - 76px);
+  overflow-y: auto;
+}
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  background: var(--bg-sand);
+  padding: 10px 16px;
+  display: inline-block;
+  width: 100%;
+}
+.sidebar-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sidebar-menu a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: block;
+}
+.sidebar-menu a:hover, .sidebar-menu a.active {
+  color: var(--accent-gold);
+  font-weight: 700;
+  transform: translateX(-4px);
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
   background: var(--bg);
 }
-.lobby-grid {
+
+.premium-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1400px;
-  margin: 0 auto;
+  gap: 20px;
 }
 
-/* Aspect ratio trick to ensure perfectly square grid cells */
-.grid-cell {
+/* Video Hero Block */
+.pg-video-hero {
+  grid-column: 1 / span 2; 
+  grid-row: 1 / span 2;
+  aspect-ratio: 1; /* Makes it a large square */
   position: relative;
-  width: 100%;
-  aspect-ratio: 1;
+  background: #000;
+  overflow: hidden;
+}
+.logo-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 140px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+.pg-video-hero iframe {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 150vw; height: 150vh; 
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.7;
 }
 
-/* Text Box: Spans 2 columns, 1 row -> aspect-ratio 2/1 */
-.text-box {
-  grid-column: span 2;
+/* Text Block */
+.pg-text-block {
+  grid-column: 3 / span 2;
+  grid-row: 1;
   aspect-ratio: 2 / 1;
-  background: var(--sand);
+  background: var(--bg-sand);
   padding: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.tb-title {
+.pg-text-block h1 {
   font-size: 28px;
-  font-weight: 900;
-  color: var(--ink);
-  margin-bottom: 16px;
-  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-main);
+  line-height: 1.2;
 }
-.tb-desc {
-  font-size: 16px;
-  color: var(--text2);
-  line-height: 1.6;
-}
-
-/* Video Box: Spans 2 cols, 2 rows -> aspect-ratio 1/1 */
-.video-box {
-  grid-column: span 2;
-  grid-row: span 2;
-  aspect-ratio: 1;
-  background: #000;
-  position: relative;
-  overflow: hidden;
-}
-.vb-iframe {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  border: none;
-  pointer-events: none; /* simple background video */
+.pg-text-block p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
 }
 
-/* Square Cards: Span 1 col, 1 row -> aspect-ratio 1/1 */
-.sc-card {
-  grid-column: span 1;
+/* Category Cards */
+.pg-card {
   aspect-ratio: 1;
   position: relative;
-  background: #fff;
+  background: #EEE;
   overflow: hidden;
   display: block;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
 }
-.sc-img {
+.pg-card-img {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sc-card:hover .sc-img {
+.pg-card:hover .pg-card-img {
   transform: scale(1.05);
 }
-.sc-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(11,10,9,0.5) 0%, rgba(11,10,9,0) 40%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sc-card:hover .sc-overlay {
-  opacity: 1;
-}
-.sc-title-wrap {
+.pg-card-title {
   position: absolute;
   bottom: 0;
+  left: 0;
   right: 0;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.sc-title {
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(4px);
-  padding: 10px 16px;
-  color: var(--ink);
+  background: rgba(235, 234, 227, 0.95);
+  padding: 16px 20px;
+  color: var(--text-main);
   font-size: 16px;
-  font-weight: 800;
-  transition: all 0.3s;
+  font-weight: 700;
+  text-align: right;
+  transition: all 0.3s ease;
 }
-.sc-card:hover .sc-title {
+.pg-card:hover .pg-card-title {
   background: var(--ink);
-  color: #fff;
+  color: #FFF;
 }
 
-/* ── RESPONSIVE ────────────────────────────────────────── */
-@media(max-width:1024px){
-  .lobby-grid{grid-template-columns: repeat(2, 1fr);}
-  .text-box { grid-column: span 2; aspect-ratio: auto; padding: 40px; }
-  .video-box { grid-column: span 2; aspect-ratio: 1.5; }
+/* ── RESPONSIVE ── */
+@media (max-width: 1200px) {
+  .sidebar { width: 220px; padding: 30px 20px; }
+  .pg-text-block { padding: 30px; }
+  .pg-text-block h1 { font-size: 24px; }
 }
-@media(max-width:768px){
-  .nav-links, .nav-cta .btn-ghost{display:none;}
-  .lobby-grid{grid-template-columns: 1fr; gap: 16px;}
-  .text-box { grid-column: span 1; aspect-ratio: auto; padding: 32px; }
-  .video-box { grid-column: span 1; grid-row: auto; aspect-ratio: 1.5; }
-  .cat-strip{justify-content:flex-start;}
+@media (max-width: 992px) {
+  .page-container { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; border-left: none; border-bottom: 1px solid var(--border); padding: 20px 40px; position: static; }
+  .sidebar-menu { flex-direction: row; flex-wrap: wrap; }
+  .premium-grid { grid-template-columns: repeat(2, 1fr); }
+  .pg-video-hero { grid-column: 1 / span 2; grid-row: auto; aspect-ratio: 16/9; }
+  .pg-text-block { grid-column: 1 / span 2; aspect-ratio: auto; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta .btn-ghost { display: none; }
+  .main-content { padding: 20px; }
+  .premium-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pg-video-hero, .pg-text-block, .pg-card { grid-column: 1 / -1; aspect-ratio: auto; }
+  .pg-video-hero { height: 350px; }
+  .pg-card { aspect-ratio: 1; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">
     <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="קבוצת אלבגינו"/>
@@ -191,113 +240,82 @@ button{cursor:pointer;font-family:inherit}
   </div>
 </nav>
 
-<!-- ═══ CATEGORY STRIP ════════════════════════════════════ -->
-<div class="cat-strip-wrap">
-  <div class="cat-strip">
-    <a href="department.html" class="cat-link active">מחלקת גראס</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת צבע</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת אלבגיניום</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת בדים</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת עץ</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת לטוש</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת פרזול</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת לוחות</a>
-  </div>
+<div class="page-container">
+  
+  <!-- SIDEBAR (Right) -->
+  <aside class="sidebar">
+    <div class="sidebar-title">בחר מוצר</div>
+    <ul class="sidebar-menu">
+      <li><a href="catalog-demo.html" class="active">ידיות לארונות ומטבחים</a></li>
+      <li><a href="catalog-demo.html">ידיות לדלתות פנים וחוץ</a></li>
+      <li><a href="catalog-demo.html">ידיות כפתור</a></li>
+      <li><a href="catalog-demo.html">ידיות למקרר אינטגרלי</a></li>
+      <li><a href="catalog-demo.html">מעצורים לדלתות</a></li>
+      <li><a href="catalog-demo.html">מוצרי פרזול לדלתות</a></li>
+      <li><a href="catalog-demo.html">ידיות לחלונות</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT (Left) -->
+  <main class="main-content">
+    
+    <!-- Title placed above the grid for context -->
+    <h1 style="font-size: 36px; font-weight: 300; margin-bottom: 30px; color: var(--text-main);">ידיות ופרזול לדלתות</h1>
+
+    <div class="premium-grid">
+      
+      <!-- Video Hero -->
+      <div class="pg-video-hero">
+        <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" class="logo-overlay" alt="Albagino Logo"/>
+        <iframe src="https://www.youtube.com/embed/Dtc-t0O6Mes?autoplay=1&mute=1&controls=0&loop=1&playlist=Dtc-t0O6Mes&modestbranding=1" allow="autoplay; fullscreen"></iframe>
+      </div>
+
+      <!-- Text Block -->
+      <div class="pg-text-block">
+        <p>
+          ידיות הן המפגש הראשון שלנו עם הרהיט או הדלת. המגע, התחושה, נוחות המשתמש, החוויה. ידיות הן כמו תכשיטים במטבח, בארון, בשידה וכמובן בדלת. הטכנולוגיה המתקדמת ומגוון העיצובים הרחב מאפשר להתאים את הידית לקו העיצובי של הבית. במשך 35 שנות פעילות החברה, מייבאת מגוון רחב של ידיות לדלתות, מטבחים ורהיטים מכל העולם תוך הקפדה על עיצוב, פונקציונליות ואיכות ממיטב המעצבים בעולם.
+        </p>
+      </div>
+
+      <!-- Small Cards auto-placed under Text Block -->
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
+        <div class="pg-card-title">ידיות לארונות ומטבחים</div>
+      </a>
+
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
+        <div class="pg-card-title">ידיות לדלתות פנים וחוץ</div>
+      </a>
+
+      <!-- Next Row of Cards -->
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800')"></div>
+        <div class="pg-card-title">מערכות צירים</div>
+      </a>
+
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800')"></div>
+        <div class="pg-card-title">מערכות קלפה</div>
+      </a>
+      
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2024/12/INOXA.png')"></div>
+        <div class="pg-card-title">חלוקת פנים</div>
+      </a>
+
+      <a href="catalog-demo.html" class="pg-card">
+        <div class="pg-card-img" style="background-image:url('https://images.unsplash.com/photo-1596207802821-657c91a0ccb0?auto=format&fit=crop&q=80&w=800')"></div>
+        <div class="pg-card-title">אביזרי הרכבה</div>
+      </a>
+
+    </div>
+  </main>
+
 </div>
 
-<!-- ═══ MASONRY LOBBY GRID ═══════════════════════════════ -->
-<main class="lobby-main">
-  <div class="lobby-grid">
-    
-    <!-- Text Box (Top Left, Spans 2 cols) -->
-    <div class="grid-cell text-box">
-      <h1 class="tb-title">מוצרי איכות מבית GRASS Austria</h1>
-      <p class="tb-desc">
-        מנגנונים מתקדמים ופתרונות תנועה מובילים לארונות ומטבחים. 
-        הטכנולוגיה המתקדמת ומגוון העיצובים הרחב מאפשר להתאים את 
-        הפתרונות של GRASS לכל קו עיצובי. במשך עשרות שנות פעילות, 
-        החברה מייצרת סטנדרט חדש של איכות, נוחות, ופונקציונליות חסרת פשרות.
-      </p>
-    </div>
-
-    <!-- Video Box (Top Right, Spans 2 cols x 2 rows) -->
-    <div class="grid-cell video-box">
-      <!-- Using YouTube embed for the video -->
-      <iframe class="vb-iframe" 
-        src="https://www.youtube.com/embed/Dtc-t0O6Mes?autoplay=1&mute=1&controls=0&loop=1&playlist=Dtc-t0O6Mes&modestbranding=1" 
-        allow="autoplay; fullscreen">
-      </iframe>
-    </div>
-
-    <!-- Small Cards under Text Box -->
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">מגירות דופן כפולה</div>
-      </div>
-    </a>
-
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">מסילות וטריקה שקטה</div>
-      </div>
-    </a>
-
-    <!-- More Square Cards (Next Row) -->
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">מערכות צירים</div>
-      </div>
-    </a>
-
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">מערכות קלפה</div>
-      </div>
-    </a>
-
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2024/12/INOXA.png')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">חלוקת פנים</div>
-      </div>
-    </a>
-
-    <a href="catalog-demo.html" class="grid-cell sc-card">
-      <div class="sc-img" style="background-image:url('https://images.unsplash.com/photo-1596207802821-657c91a0ccb0?auto=format&fit=crop&q=80&w=800')"></div>
-      <div class="sc-overlay"></div>
-      <div class="sc-title-wrap">
-        <div></div>
-        <div class="sc-title">אביזרי הרכבה</div>
-      </div>
-    </a>
-
-  </div>
-</main>
-
-<!-- Footer simplified -->
 <footer style="background:#fff; border-top:1px solid var(--border); padding:40px 5vw; text-align:center;">
-    <p style="color:var(--dim); font-size:14px;">© 2026 קבוצת אלבגינו שיווק וסחר בע״מ · כל הזכויות שמורות</p>
+    <p style="color:var(--text-muted); font-size:14px;">© 2026 קבוצת אלבגינו שיווק וסחר בע״מ · כל הזכויות שמורות</p>
 </footer>
 
 </body>
