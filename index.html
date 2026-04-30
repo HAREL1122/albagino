@@ -86,35 +86,76 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
 #nav.scrolled .nav-links a:hover{color:var(--text) !important}
 .nav-links a:hover::after{width:100%}
 
-/* ── MEGA MENU ─────────────────────────────────────────── */
+/* ── MEGA MENU (Premium Visual Grid) ────────────────────── */
 .nav-mega-parent{position:relative}
 .nav-mega-trigger{
   display:flex;align-items:center;gap:5px;
-  font-size:14px;font-weight:500;color:var(--text2);
+  font-size:14px;font-weight:500;color:rgba(255,255,255,.8);
   letter-spacing:.01em;cursor:pointer;transition:color .2s;padding:4px 0;
 }
-.nav-mega-trigger:hover{color:var(--text)}
-.nav-mega-trigger svg{width:12px;height:12px;transition:transform .25s;opacity:.4}
+#nav.scrolled .nav-mega-trigger{color:var(--text2)}
+.nav-mega-trigger:hover{color:#FFF !important}
+#nav.scrolled .nav-mega-trigger:hover{color:var(--text) !important}
+.nav-mega-trigger svg{width:12px;height:12px;transition:transform .25s;opacity:.5;stroke:currentColor}
 .nav-mega-parent:hover .nav-mega-trigger svg{transform:rotate(180deg)}
 .mega-menu{
-  position:absolute;top:calc(100% + 8px);right:-40px;width:640px;
-  background:#FFFFFF;border:1px solid var(--border);border-radius:16px;padding:24px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
-  opacity:0;pointer-events:none;transform:translateY(10px);
-  transition:opacity .22s,transform .22s;z-index:200;
-  box-shadow:0 16px 48px rgba(0,0,0,.12);
+  position:fixed;top:76px;left:0;right:0;width:100vw;
+  background:#FFFFFF;
+  border-bottom:1px solid var(--border);
+  padding:32px 5vw;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  opacity:0;pointer-events:none;transform:translateY(-8px);
+  transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1);
+  z-index:199;
+  box-shadow:0 24px 64px rgba(0,0,0,.12);
 }
 .nav-mega-parent:hover .mega-menu{opacity:1;pointer-events:all;transform:translateY(0)}
-.mega-item{display:flex;align-items:flex-start;gap:10px;padding:11px;border-radius:10px;cursor:pointer;transition:background .18s;text-decoration:none}
-.mega-item:hover{background:var(--bg2)}
-.mega-icon{width:34px;height:34px;border-radius:8px;background:rgba(184,134,11,.1);border:1px solid rgba(184,134,11,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
-.mega-label{font-size:13px;font-weight:700;color:var(--text);line-height:1.2}
-.mega-sub{font-size:11px;color:var(--dim);margin-top:2px;line-height:1.4}
-.mega-divider{grid-column:1/-1;height:1px;background:var(--border);margin:8px 0}
-.mega-bottom{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;background:linear-gradient(135deg,rgba(184,134,11,.08),rgba(139,101,8,.04));border:1px solid rgba(184,134,11,.18);cursor:pointer;transition:background .2s;text-decoration:none}
-.mega-bottom:hover{background:linear-gradient(135deg,rgba(184,134,11,.14),rgba(139,101,8,.08))}
-.mega-bottom-text{font-size:13px;font-weight:700;color:var(--accent)}
+
+/* Visual dept card inside mega menu */
+.mega-dept{
+  position:relative;overflow:hidden;
+  border-radius:12px;
+  aspect-ratio:16/9;
+  display:flex;align-items:flex-end;
+  text-decoration:none;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.mega-dept:hover{transform:translateY(-4px)}
+.mega-dept-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 1s cubic-bezier(.16,1,.3,1);
+}
+.mega-dept:hover .mega-dept-img{transform:scale(1.08)}
+.mega-dept-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.05) 70%);
+}
+.mega-dept-body{
+  position:relative;z-index:2;padding:18px 20px;width:100%;
+}
+.mega-dept-name{font-size:15px;font-weight:700;color:#FFF;line-height:1.2}
+.mega-dept-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+
+/* Bottom row */
+.mega-bottom-row{
+  grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-radius:12px;margin-top:4px;
+  background:linear-gradient(135deg,rgba(184,134,11,.07),rgba(139,101,8,.03));
+  border:1px solid rgba(184,134,11,.15);
+  cursor:pointer;transition:all .25s;text-decoration:none;
+}
+.mega-bottom-row:hover{background:linear-gradient(135deg,rgba(184,134,11,.14),rgba(139,101,8,.07));transform:translateY(-2px)}
+.mega-bottom-text{font-size:14px;font-weight:700;color:var(--accent)}
 .mega-bottom-arrow{font-size:18px;color:var(--accent)}
+
+/* Legacy compat (hidden) */
+.mega-item{display:none}
+.mega-icon{display:none}
+.mega-label{display:none}
+.mega-sub{display:none}
+.mega-divider{display:none}
+.mega-bottom{display:none}
 .nav-cta{display:flex;align-items:center;gap:10px}
 .btn-ghost{padding:9px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:600;color:rgba(255,255,255,.85);transition:all .3s;letter-spacing:.01em;background:transparent}
 #nav.scrolled .btn-ghost{border-color:var(--border);color:var(--text2);}
@@ -500,44 +541,71 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
       </span>
       <div class="mega-menu">
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🔩</div>
-          <div class="mega-text"><div class="mega-label">GRASS — מנגנונים</div><div class="mega-sub">Nova Pro, Dynapro, DWD XP</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">מנגנוני GRASS</div>
+            <div class="mega-dept-sub">Nova Pro · Dynapro · DWD XP</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🎨</div>
-          <div class="mega-text"><div class="mega-label">צבע וגימור</div><div class="mega-sub">BORMA, לקות, שמנים</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">פרזול וניקלים</div>
+            <div class="mega-dept-sub">INOXA · ידיות · מסילות · מחברים</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">⭐</div>
-          <div class="mega-text"><div class="mega-label">קולקציית אלבגינו</div><div class="mega-sub">מוצרים ייחודיים ובלעדיים</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">צבע וגימור</div>
+            <div class="mega-dept-sub">BORMA · לקות · שמנים · ציפויים</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🪢</div>
-          <div class="mega-text"><div class="mega-label">בדים וקנטים</div><div class="mega-sub">לריהוט, מיטות וספות</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">עץ ולוחות</div>
+            <div class="mega-dept-sub">MDF · אגלומרט · לוחות גולמי</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🪵</div>
-          <div class="mega-text"><div class="mega-label">עץ ולוחות</div><div class="mega-sub">MDF, אגלומרט, לוחות גולמי</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">בדים וקנטים</div>
+            <div class="mega-dept-sub">ריפוד · מיטות · ספות</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🧴</div>
-          <div class="mega-text"><div class="mega-label">כימיה ונגרות</div><div class="mega-sub">דבקים, חומרי ניקוי, פרוטקשן</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">ליטוש ושימור</div>
+            <div class="mega-dept-sub">Mirka · Festool · גרעיניות 40–400</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🔸</div>
-          <div class="mega-text"><div class="mega-label">נייר שמיר</div><div class="mega-sub">Mirka, Festool, גרעיניות 40–400</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">אריזות ואביזרים</div>
+            <div class="mega-dept-sub">חומרי אריזה · מיגון · אביזרים</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">🔧</div>
-          <div class="mega-text"><div class="mega-label">פרזול וחומרה</div><div class="mega-sub">INOXA, ידיות, מסילות, מחברים</div></div>
+        <a href="department.html" class="mega-dept">
+          <div class="mega-dept-img" style="background-image:url('https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?auto=format&fit=crop&q=80&w=800')"></div>
+          <div class="mega-dept-overlay"></div>
+          <div class="mega-dept-body">
+            <div class="mega-dept-name">חומרי גלם וגמר</div>
+            <div class="mega-dept-sub">דבקים · כימיה · חומרי ניקוי</div>
+          </div>
         </a>
-        <a href="https://albagino.co.il/shop/" class="mega-item">
-          <div class="mega-icon">📦</div>
-          <div class="mega-text"><div class="mega-label">לוחות ואריזות</div><div class="mega-sub">חומרי אריזה ומיגון</div></div>
-        </a>
-        <div class="mega-divider"></div>
-        <a href="catalog-demo.html" class="mega-bottom">
+        <a href="catalog-demo.html" class="mega-bottom-row">
           <span class="mega-bottom-text">לכל הקטלוג — אתר ההזמנות</span>
           <span class="mega-bottom-arrow">←</span>
         </a>
