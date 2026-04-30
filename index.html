@@ -249,24 +249,82 @@ section{padding:110px 5vw}
 /* category strip hidden — replaced by cinematic hero */
 .cat-strip-wrap{display:none}
 
-/* ── PRODUCTS GRID ────────────────────────────────────── */
-#products{background:var(--bg2)}
-.prod-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px}
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.prod-card{position:relative;overflow:hidden;background:#FFFFFF;border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:border-color .3s,box-shadow .3s}
-.prod-card:hover{border-color:var(--accent2);box-shadow:0 8px 32px rgba(0,0,0,.08)}
-.prod-img{width:100%;aspect-ratio:1;object-fit:cover;background-size:cover;background-position:center;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.prod-card:hover .prod-img{transform:scale(1.05)}
-.prod-body{padding:20px}
-.prod-cat{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:7px}
-.prod-name{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:7px;color:var(--text)}
-.prod-desc{font-size:13px;color:var(--dim);line-height:1.55}
-.prod-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-top:1px solid var(--border)}
-.prod-foot-tag{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
-.prod-btn{width:30px;height:30px;border-radius:7px;background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.prod-btn svg{width:14px;height:14px;stroke:var(--accent2)}
-.prod-card:hover .prod-btn{background:var(--accent2);border-color:var(--accent2)}
-.prod-card:hover .prod-btn svg{stroke:#FFFFFF}
+/* ── DEPARTMENT GRID (Dorsal-style) ──────────────── */
+#products{background:#FAFAFA;padding:120px 4vw}
+.dept-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;padding:0 0.5vw}
+.dept-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:auto auto;
+  gap:3px;
+  max-width:1800px;
+  margin:0 auto;
+}
+/* Dept card base */
+.dept-card{
+  position:relative;overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+}
+.dept-card-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity .6s;
+  opacity:.75;
+}
+.dept-card:hover .dept-card-img{transform:scale(1.07);opacity:.55}
+.dept-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.1) 60%);
+}
+.dept-card-content{
+  position:absolute;bottom:0;right:0;left:0;
+  padding:32px 28px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.dept-card-name{
+  font-size:clamp(18px,2vw,26px);
+  font-weight:300;
+  color:#FFF;
+  letter-spacing:-0.01em;
+  line-height:1.2;
+}
+.dept-card-en{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-top:5px;
+}
+.dept-card-arrow{
+  width:40px;height:40px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  opacity:0;
+  transform:translateY(8px);
+  transition:all .5s cubic-bezier(.16,1,.3,1);
+  color:#FFF;
+  margin-right:4px;
+}
+.dept-card:hover .dept-card-arrow{opacity:1;transform:translateY(0)}
+/* Asymmetric sizing — big/small pattern like Dorsal */
+.dept-card-big{aspect-ratio:4/5;grid-row:span 2}
+.dept-card-sm{aspect-ratio:1}
+@media(max-width:1024px){
+  .dept-grid{grid-template-columns:repeat(2,1fr)}
+  .dept-card-big{grid-row:span 1;aspect-ratio:3/2}
+  .dept-card-sm{aspect-ratio:3/2}
+}
+@media(max-width:640px){
+  .dept-grid{grid-template-columns:1fr 1fr;gap:2px}
+  .dept-card-big,.dept-card-sm{aspect-ratio:1}
+  .dept-card-content{padding:20px 16px}
+  .dept-card-name{font-size:16px}
+}
 
 /* ── BRANDS ───────────────────────────────────────────── */
 #brands{background:var(--bg);padding:70px 5vw;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -351,7 +409,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 /* ── RESPONSIVE ───────────────────────────────────────── */
 @media(max-width:1024px){
   .sol-grid{grid-template-columns:1fr 1fr}
-  .prod-grid{grid-template-columns:1fr 1fr}
   .feat-block{grid-template-columns:1fr;gap:44px}
   .feat-block.rev .feat-vis{order:0}
   .about-grid{grid-template-columns:1fr;gap:44px}
@@ -363,7 +420,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   .nav-links,.nav-cta .btn-ghost{display:none}
   .nav-hamburger{display:flex}
   .sol-grid{grid-template-columns:1fr}
-  .prod-grid{grid-template-columns:1fr}
   .cat-strip{justify-content:flex-start;padding:16px 5vw;gap:20px}
   .why-intro{grid-template-columns:1fr;gap:24px;margin-bottom:48px}
   .why-item{grid-template-columns:50px 1fr;gap:16px}
@@ -501,27 +557,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   </button>
 </nav>
 
-<!-- ═══ CATEGORY STRIP (SUB-HEADER) ════════════════════════════ -->
-<div class="cat-strip-wrap">
-  <div class="cat-strip">
-    <a href="department.html" class="cat-link">מחלקת גראס</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת צבע</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת אלבגיניום</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת בדים</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת עץ</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת לטוש</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת פרזול</a>
-    <span class="cat-sep">|</span>
-    <a href="department.html" class="cat-link">מחלקת לוחות</a>
-  </div>
-</div>
-
 <!-- Mobile Menu -->
 <div id="mmenu">
   <button class="m-close" id="mclose">✕</button>
@@ -537,11 +572,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-bg-fallback"></div>
-    <!-- Poster shown instantly, replaced by video after load -->
     <div class="hero-video-poster" id="heroPoster"></div>
-    <div class="hero-video-wrap" id="heroVideoWrap">
-      <!-- iframe injected by JS after DOMContentLoaded for faster LCP -->
-    </div>
+    <div class="hero-video-wrap" id="heroVideoWrap"></div>
     <div class="hero-video-overlay"></div>
     <div class="hero-ember"></div>
     <div class="hero-particles" id="particles"></div>
@@ -610,7 +642,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
     </p>
   </div>
   <div class="sol-grid reveal">
-    <!-- Card 1 -->
     <div class="sol-card">
       <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
@@ -621,7 +652,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         <div class="sol-arrow">לקטלוג המנגנונים ←</div>
       </div>
     </div>
-    <!-- Card 2 -->
     <div class="sol-card">
       <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
@@ -632,7 +662,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
         <div class="sol-arrow">לקטלוג הלוחות ←</div>
       </div>
     </div>
-    <!-- Card 3 -->
     <div class="sol-card">
       <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
@@ -648,7 +677,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 
 <!-- ═══ FEATURES ════════════════════════════════════════════ -->
 <section id="features">
-  <!-- GRASS Mechanisms -->
   <div class="feat-block reveal">
     <div>
       <span class="feat-tag">מנגנוני מגירות</span>
@@ -675,8 +703,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
   </div>
-
-  <!-- Finishing -->
   <div class="feat-block rev reveal">
     <div>
       <span class="feat-tag">צבע וגימור</span>
@@ -703,8 +729,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
   </div>
-
-  <!-- Rails & Hardware -->
   <div class="feat-block reveal">
     <div>
       <span class="feat-tag">פרזול ומסילות</span>
@@ -733,14 +757,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   </div>
 </section>
 
-<!-- ═══ PRODUCTS ══════════════════════════════════════════════ -->
+<!-- ═══ DEPARTMENTS (Dorsal-style lobby) ══════════════════════ -->
 <section id="products">
-  <div class="prod-head">
+  <div class="dept-head reveal">
     <div>
-      <div class="eyebrow reveal">קטלוג מוצרים</div>
-      <h2 class="section-h2 reveal d1">מוצרים <em>נבחרים</em></h2>
+      <div class="eyebrow">המחלקות שלנו</div>
+      <h2 class="section-h2"><em>כל מה</em> שתצטרךו לריהוט</h2>
     </div>
-    <a href="catalog-demo.html" class="btn-link reveal d2" style="margin-bottom:6px">
+    <a href="catalog-demo.html" class="btn-link" style="margin-bottom:8px">
       לכל הקטלוג
       <svg style="width:14px;height:14px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
