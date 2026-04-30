@@ -64,17 +64,26 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:0 5vw;height:76px;
   display:flex;align-items:center;justify-content:space-between;
-  background:#FFFFFF;
-  border-bottom:1px solid var(--border);
-  transition:box-shadow .3s;
+  background:transparent;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:all .5s cubic-bezier(.16,1,.3,1);
 }
-#nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.08)}
+#nav.scrolled{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(0,0,0,.07);
+  box-shadow:0 4px 32px rgba(0,0,0,.07);
+}
 .nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.nav-logo img{height:42px;width:auto;object-fit:contain}
+.nav-logo img{height:42px;width:auto;object-fit:contain;filter:brightness(0) invert(1);transition:filter .4s}
+#nav.scrolled .nav-logo img{filter:none}
 .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:14px;font-weight:500;color:var(--text2);letter-spacing:.01em;transition:color .2s;position:relative;white-space:nowrap}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.8);letter-spacing:.01em;transition:color .2s;position:relative;white-space:nowrap}
+#nav.scrolled .nav-links a{color:var(--text2)}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--accent2);transition:width .3s}
-.nav-links a:hover{color:var(--text)}
+.nav-links a:hover{color:#FFF !important}
+#nav.scrolled .nav-links a:hover{color:var(--text) !important}
 .nav-links a:hover::after{width:100%}
 
 /* ── MEGA MENU ─────────────────────────────────────────── */
@@ -107,17 +116,21 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
 .mega-bottom-text{font-size:13px;font-weight:700;color:var(--accent)}
 .mega-bottom-arrow{font-size:18px;color:var(--accent)}
 .nav-cta{display:flex;align-items:center;gap:10px}
-.btn-ghost{padding:9px 18px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text2);transition:all .2s;letter-spacing:.01em}
-.btn-ghost:hover{border-color:var(--accent2);color:var(--text);background:rgba(184,134,11,.05)}
-.btn-primary{padding:9px 20px;border-radius:8px;background:var(--text);font-size:13px;font-weight:700;color:#FFFFFF;transition:all .25s;letter-spacing:.01em}
-.btn-primary:hover{background:#2E2A26;transform:translateY(-1px)}
+.btn-ghost{padding:9px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:600;color:rgba(255,255,255,.85);transition:all .3s;letter-spacing:.01em;background:transparent}
+#nav.scrolled .btn-ghost{border-color:var(--border);color:var(--text2);}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);color:#FFF}
+#nav.scrolled .btn-ghost:hover{border-color:var(--accent2);color:var(--text);background:rgba(184,134,11,.05)}
+.btn-primary{padding:9px 20px;border-radius:8px;background:#FFF;font-size:13px;font-weight:700;color:var(--text);transition:all .25s;letter-spacing:.01em}
+#nav.scrolled .btn-primary{background:var(--text);color:#FFF;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18);background:var(--accent-light);color:#FFF}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
-.nav-hamburger span{width:24px;height:1.5px;background:var(--text);transition:all .3s;display:block}
+.nav-hamburger span{width:24px;height:1.5px;background:#FFF;transition:all .3s;display:block}
+#nav.scrolled .nav-hamburger span{background:var(--text)}
 
-/* ── HERO — stays cinematic/dark for visual impact ──────── */
+/* ── HERO — 100vh cinematic full-bleed ──────── */
 #hero{
-  position:relative;margin-top:76px;
-  height:calc(100vh - 76px);min-height:580px;
+  position:relative;margin-top:0;
+  height:100vh;min-height:620px;
   display:flex;align-items:flex-end;padding:0 5vw 10vh;overflow:hidden;
 }
 .hero-bg{position:absolute;inset:0;background:#08060A;overflow:hidden}
@@ -178,15 +191,15 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
 
 /* ── STATS ──────────────────────────────────────────── */
 #stats{
-  background:var(--bg);
+  background:#0D0B09;
   padding:0 5vw;
   display:grid;grid-template-columns:repeat(4,1fr);
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
-.stat-item{text-align:center;padding:30px 12px;position:relative}
-.stat-item+.stat-item{border-right:1px solid var(--border)}
-.stat-num{font-size:clamp(28px,3.2vw,42px);font-weight:900;color:var(--text);line-height:1;letter-spacing:-.03em}
-.stat-label{font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.07em;text-transform:uppercase;margin-top:6px}
+.stat-item{text-align:center;padding:44px 12px;position:relative}
+.stat-item+.stat-item{border-right:1px solid rgba(255,255,255,.08)}
+.stat-num{font-size:clamp(36px,4vw,56px);font-weight:900;color:var(--accent-light);line-height:1;letter-spacing:-.04em}
+.stat-label{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
 
 /* ── SECTION BASE ─────────────────────────────────────── */
 section{padding:110px 5vw}
@@ -233,13 +246,8 @@ section{padding:110px 5vw}
 .feat-vis{position:relative;width:100%}
 .feat-img{width:100%;aspect-ratio:4/4.5;object-fit:cover;background-size:cover;background-position:center;border-radius:0}
 .feat-badge{position:absolute;bottom:-30px;right:-30px;background:var(--bg2);padding:30px 40px;border-left:4px solid var(--accent2);box-shadow:0 20px 40px rgba(0,0,0,.05)}
-/* ── CATEGORY STRIP (מחלקות) ───────────────────────────── */
-.cat-strip-wrap{position:fixed;top:76px;left:0;width:100%;background:#FFFFFF;border-bottom:1px solid var(--border);z-index:98;transition:transform .3s cubic-bezier(.16,1,.3,1)}
-.cat-strip{display:flex;align-items:center;justify-content:center;gap:32px;padding:14px 5vw;overflow-x:auto;white-space:nowrap;max-width:1400px;margin:0 auto}
-.cat-strip::-webkit-scrollbar{display:none}
-.cat-link{font-size:14px;font-weight:700;color:var(--text2);letter-spacing:.02em;transition:color .2s;position:relative}
-.cat-link:hover{color:var(--accent2)}
-.cat-sep{color:var(--border);font-size:12px;user-select:none}
+/* category strip hidden — replaced by cinematic hero */
+.cat-strip-wrap{display:none}
 
 /* ── PRODUCTS GRID ────────────────────────────────────── */
 #products{background:var(--bg2)}
@@ -604,7 +612,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   <div class="sol-grid reveal">
     <!-- Card 1 -->
     <div class="sol-card">
-      <div class="sol-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
+      <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
       <div class="sol-body">
         <div class="sol-num">01 — מגירות ומנגנונים</div>
@@ -615,7 +623,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
     </div>
     <!-- Card 2 -->
     <div class="sol-card">
-      <div class="sol-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
+      <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
       <div class="sol-body">
         <div class="sol-num">02 — עץ ולוחות</div>
@@ -626,7 +634,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
     </div>
     <!-- Card 3 -->
     <div class="sol-card">
-      <div class="sol-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/roma.jpg')"></div>
+      <div class="sol-img" style="background-image:url('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=90&w=1600')"></div>
       <div class="sol-overlay"></div>
       <div class="sol-body">
         <div class="sol-num">03 — גימור ופרזול</div>
@@ -660,7 +668,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </a>
     </div>
     <div class="feat-vis">
-      <div class="feat-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
+      <div class="feat-img" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=90&w=1400')"></div>
       <div class="feat-badge">
         <div class="fb-num">50+</div>
         <div class="fb-label">וריאנטים במלאי</div>
@@ -688,7 +696,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </a>
     </div>
     <div class="feat-vis">
-      <div class="feat-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/anakona.jpg')"></div>
+      <div class="feat-img" style="background-image:url('https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?auto=format&fit=crop&q=90&w=1400')"></div>
       <div class="feat-badge">
         <div class="fb-num">BORMA</div>
         <div class="fb-label">ייבוא איטלקי</div>
@@ -716,7 +724,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </a>
     </div>
     <div class="feat-vis">
-      <div class="feat-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-לפרזול-לארונות-בגדים-pxqqvzcbu49pnfsp37ajzabq64cbi9q8nuqyxtxbps.png');background-color:#1a1815"></div>
+      <div class="feat-img" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=90&w=1400');background-color:#1a1815"></div>
       <div class="feat-badge">
         <div class="fb-num">INOXA</div>
         <div class="fb-label">עיצוב איטלקי</div>
@@ -741,7 +749,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
   </div>
   <div class="prod-grid reveal">
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/DYNAPRO-SOFT-CLOSE.jpg')"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000')"></div>
       <div class="prod-body">
         <div class="prod-cat">GRASS</div>
         <div class="prod-name">Dynapro Soft Close</div>
@@ -753,7 +761,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/מגירה.jpg')"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&q=80&w=1000')"></div>
       <div class="prod-body">
         <div class="prod-cat">GRASS</div>
         <div class="prod-name">Nova Pro Scala</div>
@@ -765,7 +773,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/roma.jpg')"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=1000')"></div>
       <div class="prod-body">
         <div class="prod-cat">BORMA</div>
         <div class="prod-name">Roma שמן עץ</div>
@@ -777,7 +785,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/2023/02/anakona.jpg')"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?auto=format&fit=crop&q=80&w=1000')"></div>
       <div class="prod-body">
         <div class="prod-cat">BORMA</div>
         <div class="prod-name">Anakona לק</div>
@@ -789,7 +797,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-למסילות-pxqqvtpap40v7bosti9q2nljfzs73mlb3kr58wu1g4.jpg');background-color:#1a1815"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1000');background-color:#1a1815"></div>
       <div class="prod-body">
         <div class="prod-cat">מסילות</div>
         <div class="prod-name">מסילות לשולחנות</div>
@@ -801,7 +809,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
       </div>
     </div>
     <div class="prod-card">
-      <div class="prod-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-לפרזול-לארונות-בגדים-pxqqvzcbu49pnfsp37ajzabq64cbi9q8nuqyxtxbps.png');background-color:#1a1815"></div>
+      <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?auto=format&fit=crop&q=80&w=1000');background-color:#1a1815"></div>
       <div class="prod-body">
         <div class="prod-cat">INOXA</div>
         <div class="prod-name">פרזול לארונות</div>
@@ -876,7 +884,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrap reveal">
-      <div class="about-img" style="background-image:url('https://albagino.co.il/wp-content/uploads/elementor/thumbs/-פנג-q2778cmjnejuxuryiufakrrhzne2rm6akj47xcvn5u.png');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#141210"></div>
+      <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=90&w=1200');background-size:cover;background-repeat:no-repeat;background-position:center;"></div>
       <div class="about-img-badge">
         <div class="about-num">1998</div>
         <div class="about-num-label">שנת הקמה</div>
