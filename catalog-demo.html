@@ -203,16 +203,28 @@
 </head>
 <body style="background: var(--sand);">
 
-<!-- Topbar -->
-<header class="demo-topbar">
-    <a href="index.html" class="demo-logo">
-        <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="קבוצת אלבגינו"/>
+<!-- ═══ UNIFIED NAV ═══ -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg" alt="אלבגינו" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <span style="display:none;align-items:center;gap:10px">
+      <span style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#D4A520,#B8860B);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#0B0A09">א</span>
+      <span>
+        <span style="display:block;font-size:15px;font-weight:800;color:#fff">קבוצת אלבגינו</span>
+        <span style="display:block;font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;letter-spacing:.08em">ALBAGINO GROUP</span>
+      </span>
+    </span>
+  </a>
+  <div class="nav-actions">
+    <a href="login.html" class="nav-user" style="padding-right:16px">
+      <span class="nav-nm">התחברות לקוחות</span>
     </a>
-    <div class="demo-actions">
-        <a href="index.html" class="btn-ghost">חזרה לאתר הראשי</a>
-        <a href="login.html" class="btn-primary">התחברות לקוחות</a>
-    </div>
-</header>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      האתר הציבורי
+    </a>
+  </div>
+</nav>
 
 <!-- Header -->
 <div class="demo-header">
@@ -220,27 +232,30 @@
     <p>ברוכים הבאים לתצוגת הקטלוג. צפו במגוון המוצרים שלנו, מנגנונים מתקדמים, לוחות, צבעים ופרזול. כדי לצפות במחירים אישיים ולבצע הזמנות, אנא התחברו למערכת.</p>
 </div>
 
-<!-- Main Catalog Layout (from dashboard.html) -->
-<div style="max-width: 1400px; margin: 0 auto 80px; padding: 0 48px;" class="cat-layout">
+<!-- Main Catalog Layout (Unified) -->
+<div style="max-width: 1400px; margin: 0 auto 80px; padding: 0 48px;">
     
-    <aside class="cat-sidebar">
-        <div class="cs-block">
-            <div class="cs-title">סינון לפי קטגוריה</div>
-            <label class="cs-check"><input type="checkbox" checked/><span class="ck-box"></span>פרזול למטבח <span>(142)</span></label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>מסילות ומגירות <span>(85)</span></label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>חומרי גימור ועץ <span>(34)</span></label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>ברגים ומחברים <span>(210)</span></label>
+    <!-- HORIZONTAL TABS (Replacing Sidebar) -->
+    <div class="cat-tabs" style="display:flex;gap:12px;margin-bottom:32px;overflow-x:auto;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,.06)">
+        <button class="cat-tab active" style="padding:10px 24px;border-radius:100px;background:var(--ink);color:#fff;font-weight:700;font-size:14px;white-space:nowrap;transition:all .2s">הכל</button>
+        <button class="cat-tab" style="padding:10px 24px;border-radius:100px;background:rgba(0,0,0,.03);color:var(--text2);font-weight:600;font-size:14px;white-space:nowrap;transition:all .2s;border:1px solid rgba(0,0,0,.05)">פרזול למטבח</button>
+        <button class="cat-tab" style="padding:10px 24px;border-radius:100px;background:rgba(0,0,0,.03);color:var(--text2);font-weight:600;font-size:14px;white-space:nowrap;transition:all .2s;border:1px solid rgba(0,0,0,.05)">מסילות ומגירות</button>
+        <button class="cat-tab" style="padding:10px 24px;border-radius:100px;background:rgba(0,0,0,.03);color:var(--text2);font-weight:600;font-size:14px;white-space:nowrap;transition:all .2s;border:1px solid rgba(0,0,0,.05)">חומרי גימור ועץ</button>
+        <button class="cat-tab" style="padding:10px 24px;border-radius:100px;background:rgba(0,0,0,.03);color:var(--text2);font-weight:600;font-size:14px;white-space:nowrap;transition:all .2s;border:1px solid rgba(0,0,0,.05)">ברגים ומחברים</button>
+        
+        <div style="margin-right:auto;display:flex;align-items:center;gap:8px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">מותג:</span>
+          <select style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:var(--ink2);outline:none">
+            <option>כל המותגים</option>
+            <option>GRASS Austria</option>
+            <option>BORMA WACHS</option>
+            <option>INOXA Italy</option>
+            <option>SENOSAN</option>
+          </select>
         </div>
-        <div class="cs-block">
-            <div class="cs-title">מותגים מובילים</div>
-            <label class="cs-check"><input type="checkbox" checked/><span class="ck-box"></span>GRASS Austria</label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>BORMA WACHS</label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>INOXA Italy</label>
-            <label class="cs-check"><input type="checkbox"/><span class="ck-box"></span>SENOSAN</label>
-        </div>
-    </aside>
+    </div>
     
-    <div class="cat-main">
+    <div class="cat-main" style="width:100%;">
         <div class="cat-bar">
             <div class="cb-res">מציג <strong>6</strong> מתוך <strong>142</strong> פריטים תואמים</div>
             <div class="cb-sort">
