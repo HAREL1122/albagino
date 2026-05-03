@@ -87,32 +87,54 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
   50%{opacity:1;transform:scale(1)}
 }
 
-/* ── NAV ──────────────────────────────────────────────── */
+/* ── NAV (2-row) ──────────────────────────────────────── */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 5vw;height:76px;
-  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  display:flex;flex-direction:column;
   background:transparent;
   border-bottom:1px solid rgba(255,255,255,0.06);
-  transition:all .5s cubic-bezier(.16,1,.3,1);
+  transition:background .5s cubic-bezier(.16,1,.3,1),
+             border-color .5s, box-shadow .5s;
 }
+.nav-top{
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+}
+/* ── Category Strip (row 2) ───────────────────────────── */
+.cat-strip{
+  display:flex;align-items:center;justify-content:center;
+  border-top:1px solid rgba(255,255,255,.1);
+  height:38px;overflow-x:auto;scrollbar-width:none;
+}
+.cat-strip::-webkit-scrollbar{display:none}
+.cat-strip a{
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);white-space:nowrap;
+  padding:0 22px;height:100%;display:flex;align-items:center;
+  text-decoration:none;position:relative;transition:color .2s;
+}
+.cat-strip a::after{
+  content:'';position:absolute;bottom:0;left:22px;right:22px;
+  height:2px;background:var(--accent2);border-radius:1px;
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .25s cubic-bezier(.16,1,.3,1);
+}
+.cat-strip a:hover{color:#fff}
+.cat-strip a:hover::after{transform:scaleX(1)}
+.cat-strip a+a{border-right:1px solid rgba(255,255,255,.12)}
+/* White bg state */
 #nav.scrolled{
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  background:rgba(255,255,255,.93);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid rgba(0,0,0,.07);
   box-shadow:0 4px 32px rgba(0,0,0,.07);
 }
+#nav.scrolled .cat-strip{border-top:1px solid rgba(0,0,0,.07)}
+#nav.scrolled .cat-strip a{color:rgba(0,0,0,.45)}
+#nav.scrolled .cat-strip a:hover{color:var(--text)}
 .nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.nav-logo img{height:42px;width:auto;object-fit:contain;filter:brightness(0) invert(1);transition:filter .4s}
+.nav-logo img{height:40px;width:auto;object-fit:contain;filter:brightness(0) invert(1);transition:filter .4s}
 #nav.scrolled .nav-logo img{filter:none}
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.8);letter-spacing:.01em;transition:color .2s;position:relative;white-space:nowrap}
-#nav.scrolled .nav-links a{color:var(--text2)}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--accent2);transition:width .3s}
-.nav-links a:hover{color:#FFF !important}
-#nav.scrolled .nav-links a:hover{color:var(--text) !important}
-.nav-links a:hover::after{width:100%}
 
 /* ── DEPARTMENTS MASONRY GRID (Architectural) ────────────────────── */
 #departments{background:var(--bg);padding:140px 5vw;position:relative}
@@ -542,34 +564,42 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:80px 5vw
 </div>
 
 <!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<!-- ═══ NAV (שתי שורות) ════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg"
-         alt="קבוצת אלבגינו"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-    <span style="display:none;align-items:center;gap:10px">
-      <span style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#D4A520,#B8860B);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#0B0A09">א</span>
-      <span>
-        <span style="display:block;font-size:15px;font-weight:800">קבוצת אלבגינו</span>
-        <span style="display:block;font-size:10px;color:var(--dim);margin-top:2px;letter-spacing:.08em">ALBAGINO GROUP</span>
+  <!-- Row 1: Logo + Buttons -->
+  <div class="nav-top">
+    <a href="#" class="nav-logo">
+      <img src="https://albagino.co.il/wp-content/uploads/elementor/thumbs/-אלבגינו-לוגו-עם-קבוצה-qyjh4solon379b64r7tlwec43ouhww986p0txesfls.jpg"
+           alt="קבוצת אלבגינו"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <span style="display:none;align-items:center;gap:10px">
+        <span style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#D4A520,#B8860B);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#0B0A09">א</span>
+        <span>
+          <span style="display:block;font-size:15px;font-weight:800">קבוצת אלבגינו</span>
+          <span style="display:block;font-size:10px;color:var(--dim);margin-top:2px;letter-spacing:.08em">ALBAGINO GROUP</span>
+        </span>
       </span>
-    </span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="department.html">מנגנוני GRASS</a></li>
-    <li><a href="department.html">פרזול וניקלים</a></li>
-    <li><a href="department.html">עץ ולוחות</a></li>
-    <li><a href="department.html">צבע וגימור</a></li>
-    <li><a href="department.html">בדים וקנטים</a></li>
-    <li><a href="department.html">ליטוש ואריזות</a></li>
-  </ul>
-  <div class="nav-cta">
-    <button class="btn-ghost" onclick="location.href='login.html'">אזור אישי</button>
-    <button class="btn-primary" onclick="location.href='dashboard.html'">לאתר ההזמנות</button>
+    </a>
+    <div class="nav-cta">
+      <button class="btn-ghost" onclick="location.href='login.html'">אזור אישי</button>
+      <button class="btn-primary" onclick="location.href='dashboard.html'">לאתר ההזמנות</button>
+    </div>
+    <button class="nav-hamburger" id="ham" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="nav-hamburger" id="ham" aria-label="תפריט">
-    <span></span><span></span><span></span>
-  </button>
+
+  <!-- Row 2: Category Strip -->
+  <div class="cat-strip">
+    <a href="department.html">מנגנוני GRASS</a>
+    <a href="department.html">פרזול וניקלים</a>
+    <a href="department.html">עץ ולוחות</a>
+    <a href="department.html">צבע וגימור</a>
+    <a href="department.html">בדים וקנטים</a>
+    <a href="department.html">ליטוש ושימור</a>
+    <a href="department.html">אריזות ואביזרים</a>
+    <a href="department.html">חומרי גלם וגמר</a>
+  </div>
 </nav>
 
 <!-- Mobile Menu -->
