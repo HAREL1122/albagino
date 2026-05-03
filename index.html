@@ -230,13 +230,13 @@ button{font-family:'Heebo',sans-serif;cursor:pointer;border:none;background:none
 @keyframes emberPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
 .hero-particles{position:absolute;inset:0;pointer-events:none;z-index:2}
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(212,165,32,.12);border:1px solid rgba(212,165,32,.28);
-  border-radius:100px;padding:6px 16px;font-size:11px;font-weight:700;
-  color:var(--accent-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;
+  display:inline-flex;align-items:center;gap:16px;
+  background:transparent;border:none;
+  padding:0;font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:28px;
 }
-.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-light);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+.hero-eyebrow::before{content:'';width:48px;height:1px;background:var(--accent-light);opacity:.6}
+.hero-eyebrow-dot{display:none}
 .hero-content{position:relative;z-index:2;max-width:860px}
 .hero-h1{font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.94;letter-spacing:-.035em;margin-bottom:26px;overflow:hidden;color:#FFFFFF}
 .hero-h1 .line{display:block;transform:translateY(110%);transition:transform .95s cubic-bezier(.25,.46,.45,.94)}
